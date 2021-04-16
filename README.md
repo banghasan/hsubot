@@ -16,7 +16,7 @@ Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab 
 
 ## Penampilan
 
-![HSUbot v0.1](https://raw.githubusercontent.com/banghasan/hsubot/main/hsubot.jpg)
+![HSUbot v0.1](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/hsubot.jpg)
 
 ## Menjalankan
 
