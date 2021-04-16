@@ -98,6 +98,5 @@ client.on('update', update => {
 async function main() {
     await client.connect()
     await client.login()
-    tg.getMe().then(result => userbot_id = result.id)
 }
 main()

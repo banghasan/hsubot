@@ -17,9 +17,11 @@ if (BOT_API) {
     userbot_id = split[0]
 }
 
-
 module.exports = function (tg, update) {
-    if (!userbot_id) return console.log('userbot_id belum dapet, .. wait!')
+    if (!userbot_id) {
+        if (!BOT_API) tg.getMe().then(result => userbot_id = result.id)
+        // return console.log('userbot_id belum dapet, .. wait!')
+    }
 
     let pesan = '-'
     let data = ''
