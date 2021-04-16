@@ -4,19 +4,26 @@ Proyek experimental (percobaan) untuk membuat bot menggunakan TDLib yang merupak
 
 Bisa konek menggunakan account biasa (nomor handphone), bisa juga menggunakan bot API.
 
+## Tujuan
+
+Dalam beberapa kasus, ada teman-teman yang membutuhkan _jembatan_ antara Bot API. Yakni, agar sesama Bot Api dapat berkomunikasi.
+
+Hal ini hanya dapat dilakukan oleh userbot.
+
 ## Penampilan
 
 ![HSUbot v0.1](https://raw.githubusercontent.com/banghasan/hsubot/main/hsubot.jpg)
 
 ## Menjalankan
 
-1. clone proyek ini
-2. copy `config_sample.js` ke `config.js`
-3. edit `config.js`
-4. npm install
-5. node main.js
+1. clone proyek ini `git clone git@github.com:banghasan/hsubot.git`
+2. Masuk ke dalam foldernya `cd hsubot`
+3. copy `config_sample.js` ke `config.js`
+4. edit `config.js`
+5. `npm install`
+6. `node main.js`
 
-## Fungsi
+## Fungsi Bot
 
 Fungsi demo berjalan
 
@@ -26,6 +33,8 @@ Fungsi demo berjalan
 - quote
 - wiki
 - ver (ngecek versi framework bot ini)
+
+Fungsi hanya sample saja.
 
 ## Kontribusi
 
