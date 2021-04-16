@@ -5,7 +5,7 @@ module.exports = {
   API_HASH: 'copasDiSini', // di dapat dari https://my.telegram.org/
 
   debug: { // untuk verbose mode
-    active: true,
+    active: false,
     level: 1 // 1: event only, 2: banyak, 3: semua
   },
 

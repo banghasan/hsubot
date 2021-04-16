@@ -1,4 +1,4 @@
-const { Client } = require('tdl')
+const { Client } = require('./tdl/client')
 //const { TDLib } = require('tdl-tdlib-ffi')
 const { TDLib } = require('tdl-tdlib-addon')
 const { fetchJson, Util } = require('./module/util');
