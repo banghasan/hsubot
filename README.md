@@ -27,7 +27,7 @@ Menjalankan user bot
 3. copy `config_sample.js` ke `config.js`
 4. edit `config.js`
 5. `npm install`
-6. `node main.js`
+6. `node main.js` atau `npm start`
 
 ## Config
 
@@ -45,10 +45,6 @@ Untuk mengaktifkan :
 Menjalankannya:
 
     node botapi.js
-
-Atau
-
-    npm start
 
 ## TDLib
 
