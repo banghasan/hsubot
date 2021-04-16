@@ -46,6 +46,12 @@ Menjalankannya:
 
     node botapi.js
 
+## TDLib
+
+TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
+
+Jika menggunakan OS lain, compile sendiri ya.
+
 ## Fungsi Bot
 
 Fungsi demo berjalan
