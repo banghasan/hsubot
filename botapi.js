@@ -1,7 +1,7 @@
 const { Client } = require('tdl')
 //const { TDLib } = require('tdl-tdlib-ffi')
 const { TDLib } = require('tdl-tdlib-addon')
-const { API_ID, API_HASH, debug, BOT_TOKEN } = require('./config.js');
+const { API_ID, API_HASH, debug, BOT_TOKEN, BOT_API } = require('./config.js');
 const APP = require('./app.js');
 const { Telegram } = require('./module/telegram');
 
@@ -10,13 +10,18 @@ const updateNewMessage = require('./update/updateNewMessage')
 // add timestamps in front of log messages
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-/* main aplikasi 
-saya pakai userbot (nomor hp / akun biasa untuk koneksi)
+/* Bot API
+Menggunakan Bot API untuk koneksi
 
 Hasanudin H Syafaat
 @hasanudinhs
 banghasan@gmail.com
 */
+
+if (!BOT_API) {
+    console.log('❌ Config Error')
+    process.exit(1)
+}
 
 const API_BOT_AUTH = {
     type: 'bot',

@@ -17,6 +17,6 @@ module.exports = {
   gunakan node botapi.js
   */
 
-  BOT_API: false,
+  BOT_API: false, // aktifkan jika pakai bot API
   BOT_TOKEN: ''  // token bot API dari @botfather
 }

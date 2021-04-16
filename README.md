@@ -20,14 +20,14 @@ Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab 
 
 ## Menjalankan
 
-Menjalankan user bot 
 
 1. clone proyek ini `git clone git@github.com:banghasan/hsubot.git`
-2. Masuk ke dalam foldernya `cd hsubot`
+2. Masuk ke foldernya `cd hsubot`
 3. copy `config_sample.js` ke `config.js`
-4. edit `config.js`
-5. `npm install`
-6. `node main.js` atau `npm start`
+4. edit `config.js` baca penjelasan dibawah
+5. `npm install` untuk menginstall dependency paket
+6. Jalankan userbot: `node main.js` atau `npm start` atau `npm run userbot`
+7. Atau jalankan botapi: `node botapi.js` atau `npm run botapi`
 
 ## Config
 
@@ -46,6 +46,10 @@ Menjalankannya:
 
     node botapi.js
 
+atau
+
+    npm run botapi
+
 ## TDLib
 
 TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
@@ -55,6 +59,14 @@ Jika menggunakan OS lain, compile sendiri ya.
 ### Android
 
 Download [https://core.telegram.org/tdlib/tdlib.zip](https://core.telegram.org/tdlib/tdlib.zip)
+
+Ekstrak dan dapatkan file `libtdjni.so` pada folder `./libtd/src/main/libs/` sesuai arsitektur hardwarenya. Kemudian sesuaikan file pada `main.js` atau `botapi.js`
+
+## Telegram Lib TD
+
+Library (helper) ditulis dari awal (from scratch) dan belum selesai.
+
+Tidak hanya library, namun diberikan sample implementasi bot.
 
 ## Fungsi Bot
 

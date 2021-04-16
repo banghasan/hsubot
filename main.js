@@ -11,7 +11,7 @@ const updateNewMessage = require('./update/updateNewMessage')
 require('console-stamp')(console, 'HH:MM:ss.l');
 
 /* main aplikasi 
-saya pakai userbot (nomor hp / akun biasa untuk koneksi)
+userbot (nomor hp / akun biasa untuk koneksi)
 
 Hasanudin H Syafaat
 @hasanudinhs

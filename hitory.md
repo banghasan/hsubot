@@ -2,7 +2,7 @@
 
 Artinya belum selesai, masih banyak bugs dan sedang proses development
 
-### v0.2
+### v0.2.X
 
 `16 April 2021`
 
@@ -10,7 +10,7 @@ Artinya belum selesai, masih banyak bugs dan sedang proses development
 + `main` dan `botapi` diperbaiki, digabungkan mengakses pada `./update`
 + memisahkan folder userbot dan botapi
 
-### v0.1
+### v0.1.X
 
 `15 April 2021`
 
