@@ -12,7 +12,7 @@ module.exports = {
   admin:
   {
     active: true,
-    id: [123456],  // Jika admin.only, sesuaikan dengan ID mu
+    id: [123456],  // Jika admin.active, sesuaikan dengan ID mu
   },
 
   /* 
@@ -22,5 +22,5 @@ module.exports = {
   */
 
   BOT_API: false,
-  BOT_TOKEN: ''
+  BOT_TOKEN: ''  // token bot API dari @botfather
 }

@@ -20,12 +20,31 @@ Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab 
 
 ## Menjalankan
 
+Menjalankan user bot 
+
 1. clone proyek ini `git clone git@github.com:banghasan/hsubot.git`
 2. Masuk ke dalam foldernya `cd hsubot`
 3. copy `config_sample.js` ke `config.js`
 4. edit `config.js`
 5. `npm install`
 6. `node main.js`
+
+## Config
+
+`API_ID` dan `API_HASH` didapatkan dari [https://my.telegram.org/](https://my.telegram.org/)
+
+> Jika konek menggunakan userbot (akun user biasa), Token BOT API tidak perlu diisi.
+
+### Bot API
+
+Untuk mengaktifkan :
+
+    BOT_API: true,
+    BOT_TOKEN: '123456:abcdefghi'
+
+Menjalankannya:
+
+    node botapi.js
 
 ## Fungsi Bot
 
