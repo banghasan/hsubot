@@ -1,5 +1,17 @@
 ## Heroku
 
+> Input nomor handphone, langsung saja meski kena flow message.
+
+Jika input nomor handphone ga bisa dilakukan, coba ganti di `main.js`
+
+    const { Client } = require('tdl')
+
+menjadi
+
+    const { Client } = require('./tdl')
+
+Jika sudah berhasil login, dan ada error bisa balikin lagi.
+
 ### Bot API
 
 Bot API sukses dan lancar.
@@ -8,4 +20,4 @@ Bot API sukses dan lancar.
 
 Silakan disesuaikan agar bisa berjalan.
 
-Kabari ya, biar saya update.
+**Kabari ya, biar saya update.**

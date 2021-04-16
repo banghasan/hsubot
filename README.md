@@ -85,6 +85,10 @@ Fungsi hanya sample saja.
 
 Sistem handle pesan update ada di dalam folder `./update`
 
+### Heroku
+
+Baca [heroku.md](https://github.com/banghasan/hsubot/blob/main/heroku.md)
+
 ## Kontribusi
 
 Dipersilakan
