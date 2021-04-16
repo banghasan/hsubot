@@ -1,4 +1,21 @@
 {
+  "name": "hsubot",
+  "version": "1.0.0",
+  "description": "Proyek eksperimental userbot Telegram",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "telegram",
+    "nodejs",
+    "javascript",
+    "bot",
+    "indonesia",
+    "tdlib",
+    "mtproto"
+  ],
   "author": "Hasanudin H Syafaat",
   "dependencies": {
     "console-stamp": "^3.0.2",
@@ -11,5 +28,9 @@
     "tdl": "^7.0.0",
     "tdl-tdlib-addon": "^1.0.1",
     "tdl-tdlib-ffi": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   }
 }

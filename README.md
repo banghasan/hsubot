@@ -46,6 +46,10 @@ Menjalankannya:
 
     node botapi.js
 
+Atau
+
+    npm start
+
 ## TDLib
 
 TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
