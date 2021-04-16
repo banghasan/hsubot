@@ -69,6 +69,10 @@ Fungsi demo berjalan
 
 Fungsi hanya sample saja.
 
+## File
+
+Sistem handle pesan update ada di dalam folder `./update`
+
 ## Kontribusi
 
 Dipersilakan

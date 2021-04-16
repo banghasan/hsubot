@@ -2,8 +2,8 @@
 Library Telegram
 (untuk TDLib/MTProto)
 
-Versi 0.1 Alpha
-15 April 2021
+Versi 0.1.2 Alpha
+16 April 2021
 
 Sedang dibuat / disusun ulang dari awal, masih acakadul.
 
@@ -20,7 +20,7 @@ function Telegram(handle) {
 
 Telegram.prototype = {
 
-    parseMode: function (text, parse_mode) {
+    parseMode: function (text, parse_mode, entities) {
 
         let pesan = { text: text }
 
@@ -43,6 +43,14 @@ Telegram.prototype = {
             })
         }
 
+        if (entities) {
+            pesan = {
+                _: 'formattedText',
+                text: text,
+                entities: entities
+            }
+        }
+
         return pesan
 
     },
@@ -53,20 +61,30 @@ Telegram.prototype = {
         return this.handle.invoke({ _: 'getMe' })
     },
 
-    sendMessage: function (chat_id, text, parse_mode = false, entities = false, disable_web_page_preview = false) {
-        let pesan = this.parseMode(text, parse_mode)
-        return this.handle.invoke({
+    sendMessage: function (chat_id, text, parse_mode = false, entities = false, disable_web_page_preview = false, disable_notification = false, reply_to_message_id = false) {
+        let pesan = this.parseMode(text, parse_mode, entities)
+
+        let data = {
             '_': "sendMessage",
             chat_id: chat_id,
-            disable_notification: false,
-            from_background: true,
-            input_message_content: {
-                '_': "inputMessageText",
-                text: pesan,
-                disable_web_page_preview: disable_web_page_preview,
-                clear_draft: false
-            }
-        })
+            input_message_content: {}
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageText",
+            text: pesan,
+            disable_web_page_preview: disable_web_page_preview,
+            clear_draft: false
+        }
+
+        return this.handle.invoke(data)
     },
 
     editMessageText: function (chat_id, message_id, text, parse_mode = false, entities = false, disable_web_page_preview = false) {
@@ -82,7 +100,25 @@ Telegram.prototype = {
                 clear_draft: false
             }
         })
-    }
+    },
+
+    forwardMessage: function (chat_id, from_chat_id, message_id) {
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageForwarded",
+            from_chat_id: from_chat_id,
+            message_id: message_id
+        }
+
+        return this.handle.invoke(data)
+    },
+
+
 }
 
 module.exports = {
