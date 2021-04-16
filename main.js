@@ -1,4 +1,4 @@
-const { Client } = require('./tdl')
+const { Client } = require('tdl')
 //const { TDLib } = require('tdl-tdlib-ffi')
 const { TDLib } = require('tdl-tdlib-addon')
 const { fetchJson, Util } = require('./module/util');
@@ -55,16 +55,19 @@ client
 async function updateNewMessage(update) {
 
     if (!userbot_id) return console.log('userbot_id belum dapet, .. wait!')
-    let me = userbot_id;
 
     let pesan = '-'
     let data = ''
 
-    if (update.message.sender.user_id == me) return false
+    if (update.message.sender.user_id == userbot_id) {
+        // tulis coding di sini jika pengen diproses
+        // console.log('Pesan sendiri tidak diproses.')
+        return false
+    }
 
-    if (debug.active && admin.active)
+    if (admin.active)
         if (!Util.punyaAkses(admin.id, update.message.sender.user_id))
-            return console.log('❌ Dia tidak ada akses', update.message.sender.user_id)
+            return debug.active ? console.log('❌ Dia tidak ada akses', update.message.sender.user_id) : false
 
     if (!update.message.content) return false
 
@@ -185,11 +188,15 @@ client.on('update', update => {
     // incoming event
 
     switch (update['_']) {
+
         case 'updateNewMessage':
             updateNewMessage(update)
             break;
 
         case 'updateMessageSendSucceeded':
+            break;
+
+        case 'updateConnectionState':
             break;
 
         default:
@@ -200,8 +207,6 @@ client.on('update', update => {
 async function main() {
     await client.connect()
     await client.login()
-    let meee = await tg.getMe()
-    userbot_id = meee.id
+    tg.getMe().then(result => userbot_id = result.id )
 }
-
 main()

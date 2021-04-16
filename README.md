@@ -56,6 +56,10 @@ TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
 
 Jika menggunakan OS lain, compile sendiri ya.
 
+### Android
+
+Download [https://core.telegram.org/tdlib/tdlib.zip](https://core.telegram.org/tdlib/tdlib.zip)
+
 ## Fungsi Bot
 
 Fungsi demo berjalan

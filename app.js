@@ -1,6 +1,6 @@
 module.exports = {
   nama: 'HSUBot',
-  versi: '0.1.1',
+  versi: '0.1.3',
   programmer: 'Hasanudin H Syafaat',
   email: 'banghasan@gmail.com',
   telegram: '@hasanudinhs',

@@ -11,7 +11,7 @@ module.exports = {
 
   admin:
   {
-    active: true,
+    active: false,
     id: [123456],  // Jika admin.active, sesuaikan dengan ID mu
   },
 
