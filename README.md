@@ -85,9 +85,13 @@ Fungsi hanya sample saja.
 
 Sistem handle pesan update ada di dalam folder `./update`
 
+### History
+
+Melihat history versi klik [history](https://github.com/banghasan/hsubot/blob/main/doc/history.md)
+
 ### Heroku
 
-Baca [heroku.md](https://github.com/banghasan/hsubot/blob/main/heroku.md)
+Baca [heroku.md](https://github.com/banghasan/hsubot/blob/main/doc/heroku.md)
 
 ## Kontribusi
 

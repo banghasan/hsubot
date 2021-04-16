@@ -10,7 +10,8 @@ menjadi
 
     const { Client } = require('./tdl')
 
-Jika sudah berhasil login, dan ada error bisa balikin lagi.
+Jika sudah berhasil login, dan ada error bisa balikin lagi. 
+Kalau ga error ya udah gpp yang mana saja.
 
 ### Bot API
 
