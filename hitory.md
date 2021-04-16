@@ -8,7 +8,7 @@ Artinya belum selesai, masih banyak bugs dan sedang proses development
 
 + Lib `Telegram` ditambahkan fowardMessage, sendMessage support entities dan reply
 + `main` dan `botapi` diperbaiki, digabungkan mengakses pada `./update`
-
++ memisahkan folder userbot dan botapi
 
 ### v0.1
 
