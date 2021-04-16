@@ -19,11 +19,10 @@ if (BOT_API) {
 
 module.exports = function (tg, update) {
     if (!userbot_id)
-        if (!BOT_API)
-            if (!userbot_id) {
-                console.log('userbot_id belum dapet, .. wait!')
-                tg.getMe().then(result => userbot_id = result.id)
-            }
+        if (!BOT_API) {
+            console.log('userbot_id belum dapet, .. wait!')
+            tg.getMe().then(result => userbot_id = result.id)
+        }
 
     let pesan = '-'
     let data = ''
