@@ -4,6 +4,10 @@ Proyek experimental (percobaan) untuk membuat bot menggunakan TDLib yang merupak
 
 Bisa konek menggunakan account biasa (nomor handphone), bisa juga menggunakan bot API.
 
+## Penampilan
+
+![HSUbot v0.1](https://raw.githubusercontent.com/banghasan/hsubot/main/hsubot.jpg)
+
 ## Menjalankan
 
 1. clone proyek ini
