@@ -1,0 +1,19 @@
+{
+  "name": "hsubot",
+  "version": "0.1a",
+  "description": "Userbot NodeJS untuk TDLib",
+  "author": "Hasanudin H Syafaat",
+  "dependencies": {
+    "console-stamp": "^3.0.2",
+    "ffi-napi": "^3.1.0",
+    "file-type": "^16.3.0",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.1",
+    "path": "^0.12.7",
+    "perf_hooks": "^0.0.1",
+    "sharp": "^0.28.0",
+    "tdl": "^7.0.0",
+    "tdl-tdlib-addon": "^1.0.1",
+    "tdl-tdlib-ffi": "^3.0.0"
+  }
+}

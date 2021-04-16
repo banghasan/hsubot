@@ -1,0 +1,8 @@
+test*
+config.js
+node_modules/
+data/
+bak/
+
+plugins/
+update/
