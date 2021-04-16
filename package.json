@@ -8,7 +8,6 @@
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "perf_hooks": "^0.0.1",
-    "sharp": "^0.28.0",
     "tdl": "^7.0.0",
     "tdl-tdlib-addon": "^1.0.1",
     "tdl-tdlib-ffi": "^3.0.0"

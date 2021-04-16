@@ -2,7 +2,6 @@ const fetch = require('node-fetch')
 const FormData = require('form-data')
 const fs = require('fs')
 const { fromBuffer } = require('file-type')
-const sharp = require('sharp')
 
 
 /**
@@ -95,22 +94,6 @@ var Button = {
     }
 }
 
-// eslint-disable-next-line no-async-promise-executor
-const resizeImage = (buff, encode) => new Promise(async (resolve, reject) => {
-    console.log('Resizeing image...')
-    const { mime } = await fromBuffer(buff)
-    sharp(buff, { failOnError: false })
-        .resize(512, 512)
-        .toBuffer()
-        .then(resizedImageBuffer => {
-            if (!encode) return resolve(resizedImageBuffer)
-            console.log('Create base64 from resizedImageBuffer...')
-            const resizedImageData = resizedImageBuffer.toString('base64')
-            const resizedBase64 = `data:${mime};base64,${resizedImageData}`
-            resolve(resizedBase64)
-        })
-        .catch(error => reject(error))
-})
 
 /**
  *Fetch Json from Url
@@ -208,7 +191,5 @@ module.exports = {
     fetchText,
     fetchBase64,
     uploadImages,
-    resizeImage,
     Button, Util
-
 }
