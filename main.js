@@ -6,6 +6,8 @@ const { API_ID, API_HASH, debug, admin } = require('./config.js');
 const APP = require('./app.js');
 const { Telegram } = require('./module/telegram');
 
+// add timestamps in front of log messages
+require('console-stamp')(console, 'HH:MM:ss.l');
 
 /* main aplikasi 
 saya pakai userbot (nomor hp / akun biasa untuk koneksi)
@@ -20,8 +22,8 @@ const tdlib = new TDLib('./tdlib/libtdjson.so')
 const client = new Client(tdlib, {
     apiId: API_ID,
     apiHash: API_HASH,
-    databaseDirectory: 'data/_td_database',
-    filesDirectory: 'data/_td_files',
+    databaseDirectory: 'data_userbot/_td_database',
+    filesDirectory: 'data_userbot/_td_files',
 
     skipOldUpdates: true,
     verbosityLevel: 2,
@@ -35,8 +37,6 @@ const client = new Client(tdlib, {
     }
 })
 
-// add timestamps in front of log messages
-require('console-stamp')(console, 'HH:MM:ss.l');
 
 // variable tg aku samakan dengan library di GAS
 const tg = new Telegram(client)

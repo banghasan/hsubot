@@ -1,6 +1,8 @@
 test*
 config.js
 data/
+data_userbot/
+data_botapi/
 bak/
 
 # belum saatnya di push
