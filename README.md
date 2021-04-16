@@ -8,7 +8,11 @@ Bisa konek menggunakan account biasa (nomor handphone), bisa juga menggunakan bo
 
 Dalam beberapa kasus, ada teman-teman yang membutuhkan _jembatan_ antara Bot API. Yakni, agar sesama Bot Api dapat berkomunikasi.
 
-Hal ini hanya dapat dilakukan oleh userbot.
+Ada juga kasus untuk mendapatkan informasi seluruh isi user pada Grup. Ada juga yang berkeinginan me-mention seluruh anggotanya atau memfilter tertentu.
+
+Hal ini hanya dapat dilakukan oleh userbot. 
+
+Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab atas penyalahgunaan hal tersebut. Seperti berakibat spamming (RAS), akun di banned, dan segala hal lainnya.
 
 ## Penampilan
 
