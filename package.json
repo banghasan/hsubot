@@ -1,7 +1,4 @@
 {
-  "name": "hsubot",
-  "version": "0.1a",
-  "description": "Userbot NodeJS untuk TDLib",
   "author": "Hasanudin H Syafaat",
   "dependencies": {
     "console-stamp": "^3.0.2",
