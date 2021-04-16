@@ -6,7 +6,7 @@ const APP = require('../app.js');
 require('console-stamp')(console, 'HH:MM:ss.l');
 
 
-let userbot_id
+let userbot_id = false
 
 if (BOT_API) {
     let split = BOT_TOKEN.split(':')
@@ -18,10 +18,12 @@ if (BOT_API) {
 }
 
 module.exports = function (tg, update) {
-    if (!userbot_id) {
-        if (!BOT_API) tg.getMe().then(result => userbot_id = result.id)
-        // return console.log('userbot_id belum dapet, .. wait!')
-    }
+    if (!userbot_id)
+        if (!BOT_API)
+            if (!userbot_id) {
+                console.log('userbot_id belum dapet, .. wait!')
+                tg.getMe().then(result => userbot_id = result.id)
+            }
 
     let pesan = '-'
     let data = ''
