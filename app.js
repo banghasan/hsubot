@@ -5,6 +5,7 @@ module.exports = {
   email: 'banghasan@gmail.com',
   telegram: '@hasanudinhs',
   rilis: 'April 2021',
-  keterangan: 'Eksperimental <b>Userbot</b> menggunakan TDLib (protokol MTProto)',
-  support: '@botindonesia'
+  keterangan: 'Eksperimental <b>Userbot</b> (dan botAPI) menggunakan TDLib (protokol MTProto)',
+  support: '@botindonesia',
+  url: 'https://github.com/banghasan/hsubot',
 }

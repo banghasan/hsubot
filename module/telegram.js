@@ -1,9 +1,8 @@
 /*
+HSTgLib
+
 Library Telegram
 (untuk TDLib/MTProto)
-
-Versi 0.1.3 Alpha
-16 April 2021
 
 Sedang dibuat / disusun ulang dari awal, masih acakadul.
 
@@ -14,11 +13,30 @@ Support Grup: @botindonesia
 
 */
 
+const { Util } = require('./util');
+
 function Telegram(handle) {
     this.handle = handle
 }
 
 Telegram.prototype = {
+    name: 'HSTgLib',
+    versi : '1.0.1',
+    version : this.versi,
+
+    invoke : function (method, parameters = false) {
+        let data = {
+            '_': method
+        }
+
+        if (parameters) {            
+            Util.forEach(parameters, (nilai, index) => {
+                data[index] = nilai
+            })
+        }
+
+        return this.handle.invoke(data)
+    },
 
     parseMode: function (text, parse_mode, entities) {
 
@@ -131,19 +149,6 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    viewMessages: function (chat_id, message_id, force_read = false) {
-        message_id = message_id.constructor === Array ? message_id : [message_id]
-        let data = {
-            '_': "viewMessages",
-            chat_id: chat_id,
-            message_ids: message_id
-        }
-
-        if (force_read) data.force_read = true
-
-        return this.handle.invoke(data)
-    },
-
     pinChatMessage: function (chat_id, message_id, disable_notification = false, only_for_self = false) {
         let data = {
             '_': "pinChatMessage",
@@ -174,6 +179,66 @@ Telegram.prototype = {
     unpinAllMessages: function (chat_id) {
         let data = {
             '_': "unpinAllMessages",
+            chat_id: chat_id
+        }
+        return this.handle.invoke(data)
+    },
+
+    getUser: function (user_id) {
+        let data = {
+            '_': "getUser",
+            user_id: user_id,
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    getUserFullInfo: function (user_id) {
+        let data = {
+            '_': "getUserFullInfo",
+            user_id: user_id,
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    searchPublicChat: function (username) {
+        let data = {
+            '_': "searchPublicChat",
+            username: username,
+        }
+
+        return this.handle.invoke(data)
+    },
+
+
+    // userbot
+
+    searchPublicChats: function (query) {
+        let data = {
+            '_': "searchPublicChats",
+            query: query,
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    viewMessages: function (chat_id, message_id, force_read = false) {
+        message_id = message_id.constructor === Array ? message_id : [message_id]
+        let data = {
+            '_': "viewMessages",
+            chat_id: chat_id,
+            message_ids: message_id
+        }
+
+        if (force_read) data.force_read = true
+
+        return this.handle.invoke(data)
+    },
+
+    getChatStatistics: function (chat_id) {
+        let data = {
+            '_': "getChatStatistics",
             chat_id: chat_id
         }
         return this.handle.invoke(data)

@@ -1,5 +1,7 @@
 const { debug, admin, BOT_TOKEN, BOT_API } = require('../config.js');
 const { fetchJson, Util } = require('../module/util');
+const fs = require('fs');
+
 const APP = require('../app.js');
 
 // add timestamps in front of log messages
@@ -51,28 +53,23 @@ module.exports = function (tg, update) {
     var msg = content.text
 
     if (/^[!\/\.]ping$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         return tg.sendMessage(message.chat_id, '<b>Pooong!</b>', 'html', false, false, false, message.id)
     }
 
     if (/^[!\/\.]json$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         return tg.sendMessage(message.chat_id, JSON.stringify(update, null, 2))
     }
 
     if (/^[!\/\.](fw|foward)$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         return tg.forwardMessage(message.chat_id, message.chat_id, message.id)
     }
 
     if (/^[!\/\.]pin$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         if (!message.reply_to_message_id) return tg.sendMessage(message.chat_id, '🤷🏽‍♂️ Silakan reply pesan yang akan dipin.', 'html', false, false, false, message.id)
         return tg.pinChatMessage(message.chat_id, message.reply_to_message_id).catch(e => console.log(e))
     }
 
     if (/^[!\/\.]unpin$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         if (!message.reply_to_message_id)
             return tg.sendMessage(message.chat_id, '❌ Reply pesan yang akan di unpin.', 'html', false, false, false, message.id)
         return tg.unpinChatMessage(message.chat_id, message.reply_to_message_id)
@@ -83,7 +80,6 @@ module.exports = function (tg, update) {
 
     // contoh pakai fetch API 1
     if (cocok = /^[!\/\.]quotes?$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         url = 'https://mhankbarbar.herokuapp.com/api/randomquotes'
 
         data = {
@@ -107,7 +103,7 @@ module.exports = function (tg, update) {
 
     // contoh pakai fetch API 2
     if (cocok = /^[!\/\.]wiki (.+)$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         url = 'https://mhankbarbar.herokuapp.com/api/wiki?q=' + cocok[1]
 
         data = {
@@ -131,7 +127,6 @@ module.exports = function (tg, update) {
 
     // debugging getme
     if (/^[!\/\.]getme$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
         return tg.getMe().then(result => {
             let pesan = "📥 Event: " + result._
             pesan += '\n\n👤 First Name: ' + result.first_name
@@ -148,13 +143,68 @@ module.exports = function (tg, update) {
     }
 
     if (/^[!\/\.]ver(si)?$/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
-        return tg.sendMessage(message.chat_id, `🔰 <b>${APP.nama}</b>\n🔖 <code>${APP.versi}</code>\n🗓 ${APP.rilis}\n\n${APP.keterangan}\n\nDiskusi dan support via ${APP.support}`, 'HTML')
+        return tg.sendMessage(message.chat_id, `🔰 <b>${APP.nama}</b>\n💠 ${tg.name} <code>v${tg.versi}</code>\n🛄 Fw <code>${APP.versi}</code>\n\n${APP.keterangan}\n\n♿️ Diskusi dan support via ${APP.support}\n📚 Repo ${APP.url}`, 'HTML')
+    }
+
+    // STATISTIK GRUP > 500 member
+    if (cocok = /^[!\/\.](stats?)$/i.exec(msg.text)) {
+        return tg.getChatStatistics(message.chat_id).then(result => {
+            console.log(result)
+            fs.writeFileSync(`./data/${message.chat_id}_.json`, JSON.stringify(result, null, 2));
+        })
+            .catch(result => tg.sendMessage(message.chat_id, `❌ <code>${result.message}</code>`, 'html', false, false, false, message.id))
     }
 
 
     if (cocok = /^[!\/\.](html|markdown) (.+)/i.exec(msg.text)) {
-        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
         return tg.sendMessage(message.chat_id, cocok[2], cocok[1])
+    }
+
+    if (cocok = /^[!\/\.]getuser ([\d]+)$/i.exec(msg.text)) {
+        return tg.getUser(cocok[1]).then(result => {
+
+            let pesan = `🆔 ID: ${result.id}\n\n👤 First Name: ${result.first_name}`
+            if (result.last_name) pesan += '\n👤 Last Name: ' + result.last_name
+            if (result.username) pesan += '\n🔰 Username: @' + result.username
+            if (result.phone_number) pesan += '\n☎️ Phone: ' + result.phone_number
+            pesan += "\n"
+            pesan += `\n- contact ${result.is_contact}`
+            pesan += `\n- mutual_contact ${result.is_mutual_contact}`
+            pesan += `\n- support ${result.is_support}`
+
+            // console.log(result)
+            tg.sendMessage(message.chat_id, pesan)
+
+        })
+            .catch(result => tg.sendMessage(message.chat_id, `<code>${result.message}</code>`, 'html', false, false, false, message.id))
+    }
+
+    if (cocok = /^[!\/\.]getuserfull (\d+)$/i.exec(msg.text)) {
+        return tg.getUser(cocok[1]).then(result => console.log(result)).catch(e => console.log(e))
+    }
+
+    if (cocok = /^[!\/\.](cari|cariUser) ([\w\d_]+)$/i.exec(msg.text)) {
+        return tg.searchPublicChat(cocok[2]).then(result => {
+            console.log(result)
+        }).catch(e => console.log(e))
+    }
+
+    if (cocok = /^[!\/\.](searchAll|cariGlobal) (.+)$/i.exec(msg.text)) {
+        // if (BOT_API) return tg.sendMessage(message.chat_id, '❌ Hanya untuk userbot.', 'html', false, false, false, message.id)
+        return tg.searchPublicChats(cocok[2]).then(result => console.log(result))
+            .catch(result => tg.sendMessage(message.chat_id, `<code>${result.message}</code>`, 'html', false, false, false, message.id))
+    }
+
+    if (cocok = /^([!\.\/]invoke ([\w_]+))/i.exec(msg.text)) {
+        method = cocok[2]
+        parameter = msg.text.replace(cocok[1], '').trim()
+        try {
+            dataInvoke = parameter.length < 3 ? false : JSON.parse(parameter)
+        } catch (e) {
+            return tg.sendMessage(message.chat_id, '❌ ' + e, false, false, false, false, message.id)
+        }
+        return tg.invoke(method, dataInvoke)
+            .then(result => tg.sendMessage(message.chat_id, JSON.stringify(result, null, 2), false, false, false, false, message.id))
+            .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
     }
 }

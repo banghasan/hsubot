@@ -89,6 +89,7 @@ client.on('update', update => {
     switch (update['_']) {
 
         case 'updateNewMessage':
+            if (!BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true).catch(e => console.log('ERROR:',e))
             updateNewMessage(tg, update)
             break;
 

@@ -63,6 +63,93 @@ var Util = {
         }
     },
 
+
+    toString: Object.prototype.toString,
+
+    isArray: function (obj) {
+        return toString.call(obj) === '[object Array]';
+    },
+
+    isString: function (val) {
+        return typeof val === 'string';
+    },
+
+    isNumber: function (val) {
+        return typeof val === 'number';
+    },
+
+    isObject: function (val) {
+        return val !== null && typeof val === 'object';
+    },
+
+    isDate: function (val) {
+        return toString.call(val) === '[object Date]';
+    },
+
+    isFunction: function (val) {
+        return toString.call(val) === '[object Function]';
+    },
+
+    isBlob: function (val) {
+        return toString.call(val) === '[object Blob]';
+    },
+
+    forEach: function (obj, fn) {
+        // Don't bother if no value provided
+        if (obj === null || typeof obj === 'undefined') {
+            return;
+        }
+
+        // Force an array if not already something iterable
+        if (typeof obj !== 'object') {
+            /*eslint no-param-reassign:0*/
+            obj = [obj];
+        }
+
+        if (this.isArray(obj)) {
+            // Iterate over array values
+            for (var i = 0, l = obj.length; i < l; i++) {
+                fn.call(null, obj[i], i, obj);
+            }
+        } else {
+            // Iterate over object keys
+            for (var key in obj) {
+                if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                    fn.call(null, obj[key], key, obj);
+                }
+            }
+        }
+    },
+
+    // allReplace('Hasanudin', {'a':4, 's': 5, 'n|u': 'o'}) //> H454oodio
+    allReplace: function (str, obj) {
+        var hasil = str;
+        for (var x in obj) {
+            hasil = hasil.replace(new RegExp(x, 'gi'), obj[x]);
+        }
+        return hasil;
+    },
+
+    random: function () {
+
+        // random(list) : item
+        if (arguments.length === 1 && this.isArray(arguments[0])) {
+            var list = arguments[0];
+            return list[Math.floor((Math.random() * list.length))];
+        }
+
+        // random(min, max) : integer
+        if (arguments.length === 2 && typeof (arguments[0]) === 'number' && typeof (arguments[1]) === 'number') {
+            var min = arguments[0];
+            var max = arguments[1];
+            if (max < min) { [min, max] = [max, min]; }
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        return false;
+    },
+
+
 }
 
 
