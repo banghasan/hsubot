@@ -460,20 +460,20 @@ class Client {
   async _handleUpdate(update) {
     // updateOption, updateConnectionState, updateAuthorizationState
     // are always emitted, even with skipOldUpdates set to true
-    switch (update._) {
+    switch (_) {
       case 'updateOption':
         debug('Option:', update);
         this.emit('update', update);
         return;
 
       case 'updateConnectionState':
-        debug('New connection state:', update.state);
-        this._connectionState = update.state;
+        debug('New connection state:', state);
+        this._connectionState = state;
         this.emit('update', update);
         return;
 
       case 'updateAuthorizationState':
-        debug('New authorization state:', update.authorization_state._);
+        debug('New authorization state:', authorization_state._);
         this.emit('update', update);
         if (!this._options.disableAuth) this._handleAuth(update).catch(e => this._catchError(new TdlError(e)));
         return;
@@ -486,7 +486,7 @@ class Client {
   }
 
   async _handleAuth(update) {
-    const authorizationState = update.authorization_state;
+    const authorizationState = authorization_state;
 
     switch (authorizationState._) {
       case 'authorizationStateWaitTdlibParameters':

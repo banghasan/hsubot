@@ -131,6 +131,53 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
+    viewMessages: function (chat_id, message_id, force_read = false) {
+        message_id = message_id.constructor === Array ? message_id : [message_id]
+        let data = {
+            '_': "viewMessages",
+            chat_id: chat_id,
+            message_ids: message_id
+        }
+
+        if (force_read) data.force_read = true
+
+        return this.handle.invoke(data)
+    },
+
+    pinChatMessage: function (chat_id, message_id, disable_notification = false, only_for_self = false) {
+        let data = {
+            '_': "pinChatMessage",
+            chat_id: chat_id,
+            message_id: message_id
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (only_for_self) {
+            data.only_for_self = only_for_self;
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    unpinChatMessage: function (chat_id, message_id) {
+        let data = {
+            '_': "unpinChatMessage",
+            chat_id: chat_id,
+            message_id: message_id
+        }
+        return this.handle.invoke(data)
+    },
+
+    unpinAllMessages: function (chat_id) {
+        let data = {
+            '_': "unpinAllMessages",
+            chat_id: chat_id
+        }
+        return this.handle.invoke(data)
+    },
 
 }
 

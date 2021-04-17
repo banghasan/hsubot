@@ -10,6 +10,7 @@ Artinya belum selesai, masih banyak bugs dan sedang proses development
 + `main` dan `botapi` diperbaiki, digabungkan mengakses pada `./update`
 + memisahkan folder userbot dan botapi
 + dijadiin satu semua ada pada `main.js`
++ [.2.5] pin/unpin/unPinAll message, perpendek variable message, userbot: viewed message
 
 ### v0.1.X
 

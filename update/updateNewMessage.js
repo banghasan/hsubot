@@ -27,19 +27,20 @@ module.exports = function (tg, update) {
     let pesan = '-'
     let data = ''
 
-    if (update.message.sender.user_id == userbot_id) {
+    let message = update.message
+
+    if (message.sender.user_id == userbot_id) {
         // tulis coding di sini jika pengen diproses
         // console.log('Pesan sendiri tidak diproses.')
         return false
     }
 
     if (admin.active)
-        if (!Util.punyaAkses(admin.id, update.message.sender.user_id))
-            return debug.active ? console.log('❌ Dia tidak ada akses', update.message.sender.user_id) : false
+        if (!Util.punyaAkses(admin.id, message.sender.user_id))
+            return debug.active ? console.log('❌ Dia tidak ada akses', message.sender.user_id) : false
 
-    if (!update.message.content) return false
-
-    let content = update.message.content
+    if (!message.content) return false
+    let content = message.content
 
 
     // deteksi event TEKS saja dulu
@@ -49,21 +50,40 @@ module.exports = function (tg, update) {
 
     var msg = content.text
 
-    if (/^[!\/\.]ping$/i.exec(msg.text))
-        return tg.sendMessage(update.message.chat_id, '<b>Pooong!</b>', 'html', false, false, false, update.message.id)
-
-    if (/^[!\/\.]json$/i.exec(msg.text)) {
-        return tg.sendMessage(update.message.chat_id, JSON.stringify(update, null, 2))
+    if (/^[!\/\.]ping$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
+        return tg.sendMessage(message.chat_id, '<b>Pooong!</b>', 'html', false, false, false, message.id)
     }
 
-    if (/^[!\/\.]fw$/i.exec(msg.text))
-        return tg.forwardMessage(update.message.chat_id, update.message.chat_id, update.message.id)
+    if (/^[!\/\.]json$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
+        return tg.sendMessage(message.chat_id, JSON.stringify(update, null, 2))
+    }
+
+    if (/^[!\/\.](fw|foward)$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
+        return tg.forwardMessage(message.chat_id, message.chat_id, message.id)
+    }
+
+    if (/^[!\/\.]pin$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
+        if (!message.reply_to_message_id) return tg.sendMessage(message.chat_id, '🤷🏽‍♂️ Silakan reply pesan yang akan dipin.', 'html', false, false, false, message.id)
+        return tg.pinChatMessage(message.chat_id, message.reply_to_message_id).catch(e => console.log(e))
+    }
+
+    if (/^[!\/\.]unpin$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
+        if (!message.reply_to_message_id)
+            return tg.sendMessage(message.chat_id, '❌ Reply pesan yang akan di unpin.', 'html', false, false, false, message.id)
+        return tg.unpinChatMessage(message.chat_id, message.reply_to_message_id)
+    }
 
     if (/^[!\/\.]hapus$/i.exec(msg.text))
-        return tg.deleteMessage(update.message.chat_id, update.message.id, true).catch(e => console.log(e))
+        return tg.deleteMessage(message.chat_id, message.id, true)
 
     // contoh pakai fetch API 1
     if (cocok = /^[!\/\.]quotes?$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true)
         url = 'https://mhankbarbar.herokuapp.com/api/randomquotes'
 
         data = {
@@ -78,7 +98,7 @@ module.exports = function (tg, update) {
             } else {
                 pesan = 'Terjadi kesalahan internal.'
             }
-            tg.sendMessage(update.message.chat_id, pesan)
+            tg.sendMessage(message.chat_id, pesan)
         })
 
         return true;
@@ -87,6 +107,7 @@ module.exports = function (tg, update) {
 
     // contoh pakai fetch API 2
     if (cocok = /^[!\/\.]wiki (.+)$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
         url = 'https://mhankbarbar.herokuapp.com/api/wiki?q=' + cocok[1]
 
         data = {
@@ -101,7 +122,7 @@ module.exports = function (tg, update) {
             } else {
                 pesan = res.error
             }
-            tg.sendMessage(update.message.chat_id, pesan)
+            tg.sendMessage(message.chat_id, pesan)
         })
 
         return true;
@@ -110,6 +131,7 @@ module.exports = function (tg, update) {
 
     // debugging getme
     if (/^[!\/\.]getme$/i.exec(msg.text)) {
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
         return tg.getMe().then(result => {
             let pesan = "📥 Event: " + result._
             pesan += '\n\n👤 First Name: ' + result.first_name
@@ -121,16 +143,18 @@ module.exports = function (tg, update) {
             pesan += `\n- mutual_contact ${result.is_mutual_contact}`
             pesan += `\n- support ${result.is_support}`
 
-            return tg.sendMessage(update.message.chat_id, pesan)
+            return tg.sendMessage(message.chat_id, pesan)
         })
     }
 
     if (/^[!\/\.]ver(si)?$/i.exec(msg.text)) {
-        return tg.sendMessage(update.message.chat_id, `🔰 <b>${APP.nama}</b>\n🔖 <code>${APP.versi}</code>\n🗓 ${APP.rilis}\n\n${APP.keterangan}\n\nDiskusi dan support via ${APP.support}`, 'HTML')
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
+        return tg.sendMessage(message.chat_id, `🔰 <b>${APP.nama}</b>\n🔖 <code>${APP.versi}</code>\n🗓 ${APP.rilis}\n\n${APP.keterangan}\n\nDiskusi dan support via ${APP.support}`, 'HTML')
     }
 
 
     if (cocok = /^[!\/\.](html|markdown) (.+)/i.exec(msg.text)) {
-        return tg.sendMessage(update.message.chat_id, cocok[2], cocok[1])
+        if (!BOT_API) tg.viewMessages(message.chat_id, message.id, true).catch(e => console.log(e))
+        return tg.sendMessage(message.chat_id, cocok[2], cocok[1])
     }
 }

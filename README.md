@@ -6,7 +6,7 @@ Bisa konek menggunakan account biasa (nomor handphone), bisa juga menggunakan bo
 
 Ini adalah rilis awal, dibangun dari scratch. So, masih banyak kekurangan. Jika banyak yang pakai atau masukkan akan dikembangkan lagi.
 
-## Tujuan
+### Tujuan
 
 Dalam beberapa kasus, ada teman-teman yang membutuhkan _jembatan_ antara Bot API. Yakni, agar sesama Bot Api dapat berkomunikasi.
 
@@ -16,12 +16,15 @@ Hal ini hanya dapat dilakukan oleh userbot.
 
 Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab atas penyalahgunaan hal tersebut. Seperti berakibat spamming (RAS), akun di banned, dan segala hal lainnya.
 
+### Log History
+
+Untuk melihat [history versi](https://github.com/banghasan/hsubot/blob/main/doc/history.md)
+
 ## Penampilan
 
 ![HSUbot v0.1](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/hsubot.jpg)
 
 ## Menjalankan
-
 
 1. clone proyek `git clone git@github.com:banghasan/hsubot.git`
 2. Masuk foldernya `cd hsubot`
@@ -89,10 +92,6 @@ Sistem handle pesan update ada di dalam folder `./update`
 ### Heroku
 
 Catatan tentang [Heroku](https://github.com/banghasan/hsubot/blob/main/doc/heroku.md)
-
-### History
-
-Melihat history versi klik [history](https://github.com/banghasan/hsubot/blob/main/doc/history.md)
 
 ## Kontribusi
 
