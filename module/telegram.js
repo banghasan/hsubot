@@ -2,7 +2,7 @@
 Library Telegram
 (untuk TDLib/MTProto)
 
-Versi 0.1.2 Alpha
+Versi 0.1.3 Alpha
 16 April 2021
 
 Sedang dibuat / disusun ulang dari awal, masih acakadul.
@@ -114,6 +114,19 @@ Telegram.prototype = {
             from_chat_id: from_chat_id,
             message_id: message_id
         }
+
+        return this.handle.invoke(data)
+    },
+
+    deleteMessage: function (chat_id, message_id, revoke = false) {
+        message_id = message_id.constructor === Array ? message_id : [message_id]
+        let data = {
+            '_': "deleteMessages",
+            chat_id: chat_id,
+            message_ids: message_id
+        }
+
+        if (revoke) data.revoke = true
 
         return this.handle.invoke(data)
     },

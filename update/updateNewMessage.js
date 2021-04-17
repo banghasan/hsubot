@@ -57,7 +57,10 @@ module.exports = function (tg, update) {
     }
 
     if (/^[!\/\.]fw$/i.exec(msg.text))
-        return tg.forwardMessage(update.message.chat_id, update.message.chat_id, update.message.id).catch(e => console.log(e))
+        return tg.forwardMessage(update.message.chat_id, update.message.chat_id, update.message.id)
+
+    if (/^[!\/\.]hapus$/i.exec(msg.text))
+        return tg.deleteMessage(update.message.chat_id, update.message.id, true).catch(e => console.log(e))
 
     // contoh pakai fetch API 1
     if (cocok = /^[!\/\.]quotes?$/i.exec(msg.text)) {
