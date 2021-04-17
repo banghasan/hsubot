@@ -1,8 +1,10 @@
-## USERBOT
+## HSUbot
 
 Proyek experimental (percobaan) untuk membuat bot menggunakan TDLib yang merupakan wrapper untuk protokol MTProto Telegram
 
 Bisa konek menggunakan account biasa (nomor handphone), bisa juga menggunakan bot API.
+
+Ini adalah rilis awal, dibangun dari scratch. So, masih banyak kekurangan. Jika banyak yang pakai atau masukkan akan dikembangkan lagi.
 
 ## Tujuan
 
@@ -21,13 +23,12 @@ Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab 
 ## Menjalankan
 
 
-1. clone proyek ini `git clone git@github.com:banghasan/hsubot.git`
-2. Masuk ke foldernya `cd hsubot`
+1. clone proyek `git clone git@github.com:banghasan/hsubot.git`
+2. Masuk foldernya `cd hsubot`
 3. copy `config_sample.js` ke `config.js`
-4. edit `config.js` baca penjelasan dibawah
+4. edit `config.js` baca penjelasannya
 5. `npm install` untuk menginstall dependency paket
-6. Jalankan userbot: `node main.js` atau `npm start` atau `npm run userbot`
-7. Atau jalankan botapi: `node botapi.js` atau `npm run botapi`
+6. Jalankan userbot: `node main.js` atau `npm start`
 
 ## Config
 
@@ -37,18 +38,15 @@ Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab 
 
 ### Bot API
 
+Jika tidak aktif, maka mode userbot yang akan berjalan.
+
 Untuk mengaktifkan :
 
-    BOT_API: true,
+    BOT_API: true
+
+Jangan lupa di set tokennya :
+
     BOT_TOKEN: '123456:abcdefghi'
-
-Menjalankannya:
-
-    node botapi.js
-
-atau
-
-    npm run botapi
 
 ## TDLib
 
@@ -62,36 +60,39 @@ Download [https://core.telegram.org/tdlib/tdlib.zip](https://core.telegram.org/t
 
 Ekstrak dan dapatkan file `libtdjni.so` pada folder `./libtd/src/main/libs/` sesuai arsitektur hardwarenya. Kemudian sesuaikan file pada `main.js` atau `botapi.js`
 
-## Telegram Lib TD
+## Library Telegram
 
 Library (helper) ditulis dari awal (from scratch) dan belum selesai.
 
-Tidak hanya library, namun diberikan sample implementasi bot.
+Tidak hanya library, namun diberikan sample implementasi bot. Ini adalah framewrok bot TD Lib.
 
 ## Fungsi Bot
+
+Semua fungsi bisa diawali dengan salah satu karakter: `/!.`
 
 Fungsi demo berjalan
 
 - ping
+- fw (test foward pesan)
 - getme (example data JSON)
 - json
 - quote
-- wiki
+- wiki [kata kunci]
 - ver (ngecek versi framework bot ini)
 
-Fungsi hanya sample saja.
+Fungsi tersebut sekadar sample saja.
 
 ## File
 
 Sistem handle pesan update ada di dalam folder `./update`
 
+### Heroku
+
+Catatan tentang [Heroku](https://github.com/banghasan/hsubot/blob/main/doc/heroku.md)
+
 ### History
 
 Melihat history versi klik [history](https://github.com/banghasan/hsubot/blob/main/doc/history.md)
-
-### Heroku
-
-Baca [heroku.md](https://github.com/banghasan/hsubot/blob/main/doc/heroku.md)
 
 ## Kontribusi
 

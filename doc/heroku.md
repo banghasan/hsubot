@@ -1,24 +1,20 @@
 ## Heroku
 
-> Input nomor handphone, langsung saja meski kena flow message.
+Saya tidak mengerti cara pakai Heroku. Jadi tidak mengerti bagaimana men-deploy di sana. Tidak mengerti juga tools apa saja yang dipakai dan bagaimana cara pakainya.
 
-Jika input nomor handphone ga bisa dilakukan, coba ganti di `main.js`
+Hasil test menggunakan Bot API lancar. Userbot test pake mode run console, berjalan.
 
-    const { Client } = require('tdl')
+### Userbot
 
-menjadi
+Input nomor handphone, langsung saja meski kena flow message.
 
-    const { Client } = require('./tdl')
-
-Jika sudah berhasil login, dan ada error bisa balikin lagi. 
-Kalau ga error ya udah gpp yang mana saja.
+Silakan disesuaikan agar bisa berjalan.
 
 ### Bot API
 
 Bot API sukses dan lancar.
 
-### Userbot
 
-Silakan disesuaikan agar bisa berjalan.
+## Notes
 
-**Kabari ya, biar saya update.**
+Kabari ya, biar saya update

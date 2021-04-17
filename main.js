@@ -1,7 +1,7 @@
 const { Client } = require('tdl')
 //const { TDLib } = require('tdl-tdlib-ffi')
 const { TDLib } = require('tdl-tdlib-addon')
-const { API_ID, API_HASH, debug } = require('./config.js');
+const { API_ID, API_HASH, debug, BOT_TOKEN, BOT_API } = require('./config.js');
 const APP = require('./app.js');
 const { Telegram } = require('./module/telegram');
 
@@ -10,21 +10,29 @@ const updateNewMessage = require('./update/updateNewMessage')
 // add timestamps in front of log messages
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-/* main aplikasi 
-userbot (nomor hp / akun biasa untuk koneksi)
+/* Bot API
+Menggunakan Bot API untuk koneksi
 
 Hasanudin H Syafaat
 @hasanudinhs
 banghasan@gmail.com
 */
 
+const API_BOT_AUTH = {
+    type: 'bot',
+    token: BOT_TOKEN,           // in document say write this line but
+    getToken: () => BOT_TOKEN   // if this line dont set pakase get error and dont work
+}
+
+let pathData = BOT_API ? 'data_botapi' : 'data_userbot'
+
 const tdlib = new TDLib('./tdlib/libtdjson.so')
 
 const client = new Client(tdlib, {
     apiId: API_ID,
     apiHash: API_HASH,
-    databaseDirectory: 'data_userbot/_td_database',
-    filesDirectory: 'data_userbot/_td_files',
+    databaseDirectory: pathData + '/_td_database',
+    filesDirectory: pathData + '/_td_files',
 
     skipOldUpdates: true,
     verbosityLevel: 2,
@@ -73,7 +81,7 @@ client.on('update', update => {
     }
 
     if (debug.active)
-        console.log(debugLog)
+        console.log(JSON.stringify(debugLog, null, 1))
 
 
     // incoming event
@@ -97,6 +105,10 @@ client.on('update', update => {
 
 async function main() {
     await client.connect()
-    await client.login()
+    if (BOT_API) {
+        await client.login(() => API_BOT_AUTH)
+    } else {
+        await client.login()
+    }
 }
 main()

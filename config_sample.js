@@ -1,22 +1,24 @@
 module.exports = {
-  API_ID: 123456, // di dapat dari https://my.telegram.org/
-  API_HASH: 'copasDiSini', // di dapat dari https://my.telegram.org/
+  // di dapat dari https://my.telegram.org/
+  API_ID: 123456, 
+  API_HASH: 'copasDiSini',
 
-  debug: { // untuk verbose mode
+  // aktifkan jika pakai bot API
+  BOT_API: false, 
+
+  // untuk verbose mode
+  debug: { 
     active: false,
-    level: 1 // 1 event only, 2 banyak tidak termasuk object atau fungsi, 3 semua
+    level: 1 // 1 event only, 2 detail, 3 semua termasuk object dan fungsi
   },
   admin:
   {
-    active: false,
-    id: [123456],  // Jika admin.active, sesuaikan dengan ID mu
+    active: false, 
+    // Jika admin.active, sesuaikan dengan ID mu
+    id: [123456],  
   },
 
-  /* 
-  klo mau pakai bot api
-  gunakan node botapi.js
-  */
-
-  BOT_API: false, // aktifkan jika pakai bot API
-  BOT_TOKEN: ''  // token bot API dari @botfather
+  // HANYA jika BOT_API true
+  // token bot API dari @botfather
+  BOT_TOKEN: ''  
 }
