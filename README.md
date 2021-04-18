@@ -22,8 +22,8 @@ Untuk melihat [history versi](https://github.com/banghasan/hsubot/blob/main/doc/
 
 ## Penampilan
 
-![command](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/hsubot.jpg)
 ![stats](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/stats.jpg)
+![session](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/session.jpg)
 
 ## Menjalankan
 

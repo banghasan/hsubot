@@ -51,4 +51,8 @@ Terakhir jangan lupa di `module.exports`
 
 ## Next
 
-Format ini akan masih berkembang sesuai kebutuhan.
+Format ini masih berkembang sesuai kebutuhan untuk keperluan yang lebih kompleks.
+
+Masih ada beberapa fitur yang belum diimplementasikan dalam struktur ini. Namun, bisa dipastikan tidak akan jauh berbeda.
+
+Agar dipantau halaman ini yak ^^
