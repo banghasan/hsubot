@@ -52,17 +52,19 @@ Jangan lupa di set tokennya :
 
     BOT_TOKEN: '123456:abcdefghi'
 
-## TDLib
+### TDLib
 
 TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
 
 Jika menggunakan OS lain, compile sendiri ya.
 
-### Android
+Setingan diletakkan pada `config.js`
+
+#### Android 
 
 Download [https://core.telegram.org/tdlib/tdlib.zip](https://core.telegram.org/tdlib/tdlib.zip)
 
-Ekstrak dan dapatkan file `libtdjni.so` pada folder `./libtd/src/main/libs/` sesuai arsitektur hardwarenya. Kemudian sesuaikan file pada `main.js` atau `botapi.js`
+Ekstrak dan dapatkan file `libtdjni.so` pada folder `./libtd/src/main/libs/` sesuai arsitektur hardwarenya. 
 
 ## Library Telegram
 
@@ -76,17 +78,15 @@ Tidak hanya library, namun diberikan sample implementasi bot. Ini adalah framewr
 - Bersifat modular dan mudah dikembangkan
 - Command bisa dipantau dengan mengetikkan `.help`
 
-## File
-
-Sistem handle pesan update ada di dalam folder `./update`
-
 ### Heroku
 
 Catatan tentang [Heroku](https://github.com/banghasan/hsubot/blob/main/doc/heroku.md)
 
+Mohon kabari kalau sudah bisa jalan userbot di situ ^^
+
 ## Kontribusi
 
-Dipersilakan
+Dipersilakan.
 
 ## Support
 
