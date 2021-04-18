@@ -16,9 +16,8 @@ module.exports = {
   },
   admin:
   {
-    active: false,
-    // Jika admin.active, sesuaikan dengan ID mu
-    id: [123456],
+    active: true, // <-- selalu aktifkan saja
+    id: [123456], // <-- batasi di sini, jika bot pengen diproses.. kasih ID nya bot sekalian
   },
 
 
