@@ -32,8 +32,12 @@ module.exports = function (tg, update) {
     }
 
     if (admin.active)
-        if (!Util.punyaAkses(admin.id, message.sender.user_id))
-            return debug.active ? console.log('❌ Dia tidak ada akses', message.sender.user_id) : false
+        if (!Util.punyaAkses(admin.id, message.sender.user_id)) {
+            if (debug.active) {
+                if (debug.level > 0) console.log('❌ Dia tidak ada akses', message.sender.user_id)
+            }
+            return false
+        }
 
     if (!message.content) return false
     let content = message.content
