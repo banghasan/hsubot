@@ -5,7 +5,7 @@ const { Util } = require('../module/util');
 const APP = require('../app.js');
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-let userbot_id = false
+var userbot_id = false
 
 if (BOT_API) {
     let split = BOT_TOKEN.split(':')
@@ -19,7 +19,7 @@ if (BOT_API) {
 module.exports = function (tg, update) {
     if (!userbot_id)
         if (!BOT_API) {
-            if (debug.active && debug.level > 0) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
+            if (debug.active) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
             tg.getMe().then(result => userbot_id = result.id)
         }
 
@@ -34,7 +34,7 @@ module.exports = function (tg, update) {
     if (admin.active)
         if (!Util.punyaAkses(admin.id, message.sender.user_id)) {
             if (debug.active) {
-                if (debug.level > 0) console.log('❌ Dia tidak ada akses', message.sender.user_id)
+                if (debug.level > 1) console.log('❌ Dia tidak ada akses', message.sender.user_id)
             }
             return false
         }
