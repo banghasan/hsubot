@@ -3,6 +3,7 @@ config.js
 data_userbot/
 data_botapi/
 bak/
+data/*
 
 # belum saatnya di push
 plugins/

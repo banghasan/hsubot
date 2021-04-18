@@ -1,14 +1,23 @@
 const { debug, admin, BOT_TOKEN, BOT_API } = require('../config.js');
 const { fetchJson, Util } = require('../module/util');
 const fs = require('fs');
+let dateFormat = require("dateformat");
 
 const APP = require('../app.js');
 
 // add timestamps in front of log messages
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-
+let nFormat = new Intl.NumberFormat('id-ID')
+let nFormatPersen = new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 2 })
 let userbot_id = false
+
+let statFormat = function (dataStats, title, field) {
+    let pesan = `\n\n${title}`
+    pesan += `\n  ├ <code>${nFormat.format(dataStats[field].previous_value)} -> ${nFormat.format(dataStats[field].value)}</code>`
+    pesan += `\n  └ <code>${dataStats[field].growth_rate_percentage >= 0 ? '+' : ''}${nFormatPersen.format(dataStats[field].growth_rate_percentage)}%</code>`
+    return pesan
+}
 
 if (BOT_API) {
     let split = BOT_TOKEN.split(':')
@@ -148,9 +157,21 @@ module.exports = function (tg, update) {
 
     // STATISTIK GRUP > 500 member
     if (cocok = /^[!\/\.](stats?)$/i.exec(msg.text)) {
-        return tg.getChatStatistics(message.chat_id).then(result => {
-            console.log(result)
-            fs.writeFileSync(`./data/${message.chat_id}_.json`, JSON.stringify(result, null, 2));
+        return tg.getChatStatistics(message.chat_id).then(dataStats => {
+            // console.log(result)
+            // fs.writeFileSync(`./data/${message.chat_id}_.json`, JSON.stringify(result, null, 2));
+            let pesan = "📊 Statistik"
+
+            pesan += `\n\n🗓 Periode`
+            pesan += `\n  └ ${dateFormat(dataStats.period.start_date * 1000, 'd mmm \'yy')}`
+            pesan += ` - ${dateFormat(dataStats.period.end_date * 1000, 'd mmm \'yy')}`
+
+            pesan += statFormat(dataStats, '👤 Member', 'member_count')
+            pesan += statFormat(dataStats, '💁🏼 Sender', 'sender_count')
+            pesan += statFormat(dataStats, '💬 Message', 'message_count')
+            pesan += statFormat(dataStats, '👀 Viewer', 'viewer_count')
+
+            tg.sendMessage(message.chat_id, pesan, 'html', false, false, false, message.id)
         })
             .catch(result => tg.sendMessage(message.chat_id, `❌ <code>${result.message}</code>`, 'html', false, false, false, message.id))
     }
