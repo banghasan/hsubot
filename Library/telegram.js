@@ -13,7 +13,7 @@ Support Grup: @botindonesia
 
 */
 
-const { Util } = require('./util');
+const { Util } = require('../module/util');
 
 function Telegram(handle) {
     this.handle = handle

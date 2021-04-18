@@ -2,6 +2,7 @@ module.exports = {
   // di dapat dari https://my.telegram.org/
   API_ID: 123456,
   API_HASH: 'copasDiSini',
+  pathTDLib : './tdlib/libtdjson.so',
 
   // aktifkan jika pakai bot API
   BOT_API: false,

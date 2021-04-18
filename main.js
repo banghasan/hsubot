@@ -1,51 +1,19 @@
-const { Client } = require('tdl')
-//const { TDLib } = require('tdl-tdlib-ffi')
-const { TDLib } = require('tdl-tdlib-addon')
-const { API_ID, API_HASH, debug, BOT_TOKEN, BOT_API } = require('./config.js');
-const APP = require('./app.js');
-const { Telegram } = require('./module/telegram');
 
+const { debug, BOT_API } = require('./config.js');
+const { client, API_BOT_AUTH } = require('./module/client');
+const { Telegram } = require('./Library/telegram');
+require('console-stamp')(console, 'HH:MM:ss.l');
 const updateNewMessage = require('./update/updateNewMessage')
 
-// add timestamps in front of log messages
-require('console-stamp')(console, 'HH:MM:ss.l');
-
-/* Bot API
-Menggunakan Bot API untuk koneksi
+/*
+HSUbot
 
 Hasanudin H Syafaat
 @hasanudinhs
 banghasan@gmail.com
+
+Support Grup Telegram @botindonesia
 */
-
-const API_BOT_AUTH = {
-    type: 'bot',
-    token: BOT_TOKEN,           // in document say write this line but
-    getToken: () => BOT_TOKEN   // if this line dont set pakase get error and dont work
-}
-
-let pathData = BOT_API ? 'data_botapi' : 'data_userbot'
-
-const tdlib = new TDLib('./tdlib/libtdjson.so')
-
-const client = new Client(tdlib, {
-    apiId: API_ID,
-    apiHash: API_HASH,
-    databaseDirectory: pathData + '/_td_database',
-    filesDirectory: pathData + '/_td_files',
-
-    skipOldUpdates: true,
-    verbosityLevel: 2,
-
-    tdlibParameters: {
-        enable_storage_optimizer: true,
-        system_language_code: 'en',
-        application_version: APP.versi,
-        device_model: `${APP.nama} v${APP.versi}`,
-        system_version: 'Unknown',
-    }
-})
-
 
 // variable tg aku samakan dengan library di GAS
 const tg = new Telegram(client)
@@ -55,7 +23,7 @@ client
         console.error('Got error:', JSON.stringify(err, null, 2))
     })
     .on('destroy', () => {
-        console.log('destroy event')
+        console.log('Destroy event')
     })
 
 
@@ -89,7 +57,7 @@ client.on('update', update => {
     switch (update['_']) {
 
         case 'updateNewMessage':
-            if (!BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true).catch(e => console.log('ERROR:',e))
+            if (!BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true).catch(e => console.log('ERROR:', e))
             updateNewMessage(tg, update)
             break;
 
