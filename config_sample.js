@@ -2,6 +2,8 @@ module.exports = {
   // di dapat dari https://my.telegram.org/
   API_ID: 123456,
   API_HASH: 'copasDiSini',
+
+  // path TDLib (tersedia untuk Linux 64 compile via Ubuntu 20.04)
   pathTDLib : './tdlib/libtdjson.so',
 
   // aktifkan jika pakai bot API
