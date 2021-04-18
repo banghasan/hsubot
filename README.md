@@ -78,6 +78,10 @@ Tidak hanya library, namun diberikan sample implementasi bot. Ini adalah framewr
 - Bersifat modular dan mudah dikembangkan
 - Command bisa dipantau dengan mengetikkan `.help`
 
+### Plugins
+
+Baca disini tentang [plugins](https://github.com/banghasan/hsubot/blob/main/doc/plugins.md)
+
 ### Heroku
 
 Catatan tentang [Heroku](https://github.com/banghasan/hsubot/blob/main/doc/heroku.md)

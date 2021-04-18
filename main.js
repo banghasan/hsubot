@@ -37,7 +37,7 @@ client.on('update', update => {
     } else if (debug.level == 2) {
         debugLog = update
     } else if (debug.level == 3) {
-        debugLog = JSON.stringify(update, null, 1)
+        debugLog = update
     } else {
         debug.active = false
     }

@@ -21,15 +21,15 @@ function Telegram(handle) {
 
 Telegram.prototype = {
     name: 'HSTgLib',
-    versi : '1.0.1',
-    version : this.versi,
+    versi: '1.1.0',
+    version: this.versi,
 
-    invoke : function (method, parameters = false) {
+    invoke: function (method, parameters = false) {
         let data = {
             '_': method
         }
 
-        if (parameters) {            
+        if (parameters) {
             Util.forEach(parameters, (nilai, index) => {
                 data[index] = nilai
             })
@@ -73,6 +73,36 @@ Telegram.prototype = {
 
     },
 
+
+    typeFile: function (content) {
+        let data = {}
+        if (/^http/i.exec(content)) {
+            data = {
+                '_': 'inputFileRemote',
+                id: content
+            }
+        } else if (/^(\/|\.\/)/i.exec(content)) {
+            data = {
+                '_': 'inputFileLocal',
+                path: content
+            }
+        } else if (Util.isNumber(content)) {
+            data = {
+                '_': 'inputFileId',
+                id: content
+            }
+        } else {
+            data = {
+
+                '_': 'inputFileRemote',
+                id: content
+            }
+        }
+
+        return data
+
+    },
+
     // fungsi seperti Bot API
 
     getMe() {
@@ -88,11 +118,12 @@ Telegram.prototype = {
             input_message_content: {}
         }
 
-        if (reply_to_message_id) {
-            data.reply_to_message_id = reply_to_message_id;
-        }
         if (disable_notification) {
             data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
         }
 
         data.input_message_content = {
@@ -211,6 +242,186 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
+    sendPhoto: function (chat_id, photo, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+        // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
+        let detailData = this.typeFile(photo)
+
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessagePhoto",
+            photo: detailData,
+        }
+
+        if (caption){ 
+            let text = this.parseMode(caption, parse_mode, caption_entities)
+            data.input_message_content.caption = text
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    sendDocument: function (chat_id, document, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+        // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
+        let detailData = this.typeFile(document)
+
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageDocument",
+            document: detailData,
+        }
+
+        if (caption){ 
+            let text = this.parseMode(caption, parse_mode, caption_entities)
+            data.input_message_content.caption = text
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    sendVideo: function (chat_id, video, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+        // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
+        let detailData = this.typeFile(video)
+
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageVideo",
+            video: detailData,
+        }
+
+        if (caption){ 
+            let text = this.parseMode(caption, parse_mode, caption_entities)
+            data.input_message_content.caption = text
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    sendAudio: function (chat_id, audio, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+        // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
+        let detailData = this.typeFile(audio)
+
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageAudio",
+            audio: detailData,
+        }
+
+        if (caption){ 
+            let text = this.parseMode(caption, parse_mode, caption_entities)
+            data.input_message_content.caption = text
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    sendVoice: function (chat_id, voice, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+        // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
+        let detailData = this.typeFile(voice)
+
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageVoiceNote",
+            voice_note: detailData,
+        }
+
+        if (caption){ 
+            let text = this.parseMode(caption, parse_mode, caption_entities)
+            data.input_message_content.caption = text
+        }
+
+        return this.handle.invoke(data)
+    },
+
+    sendSticker: function (chat_id, sticker, disable_notification=false, reply_to_message_id=false) {
+        // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
+        let detailData = this.typeFile(sticker)
+
+        let data = {
+            '_': "sendMessage",
+            chat_id: chat_id,
+            input_message_content: {}
+        }
+
+        if (disable_notification) {
+            data.disable_notification = disable_notification;
+        }
+
+        if (reply_to_message_id) {
+            data.reply_to_message_id = reply_to_message_id;
+        }
+
+        data.input_message_content = {
+            '_': "inputMessageSticker",
+            sticker: detailData,
+        }
+
+        return this.handle.invoke(data)
+    },
 
     // userbot
 

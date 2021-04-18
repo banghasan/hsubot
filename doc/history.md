@@ -11,6 +11,7 @@ Artinya sudah selesai, namun kemungkinan besar banyak bugs
 `18 April 2021`
 
 + plugins-able
++ [.3.3] TGLib v1.1: send - Photo, Doc, Video, Sticker, Audio, Voice
 
 ### v0.2 a
 

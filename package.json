@@ -24,6 +24,7 @@
     "file-type": "^16.3.0",
     "form-data": "^4.0.0",
     "heroku-cli-util": "^8.0.12",
+    "image-size": "^1.0.0",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "perf_hooks": "^0.0.1",
