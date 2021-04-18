@@ -61,10 +61,7 @@ module.exports = function (tg, update) {
     })
 
     // modul helper
-    if (!ketemu) {
-        Util.forEach(helper, help => {
-            help.run(tg, update, plugins)
-        })
-    }
+    if (!ketemu)
+        Util.forEach(helper, help => help.run(tg, update, plugins))
 
 }

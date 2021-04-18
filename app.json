@@ -35,7 +35,7 @@
     },
     "admin_mode": {
       "description": "Jika ingin bot hanya bisa digunakan admin isi variable ini true.",
-      "value": "false",
+      "value": "true",
       "required": false
     },
     "admin_id": {
