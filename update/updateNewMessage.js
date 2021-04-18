@@ -19,7 +19,7 @@ if (BOT_API) {
 module.exports = function (tg, update) {
     if (!userbot_id)
         if (!BOT_API) {
-            if (debug.active) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
+            if (debug.active && debug.level > 0) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
             tg.getMe().then(result => userbot_id = result.id)
         }
 
