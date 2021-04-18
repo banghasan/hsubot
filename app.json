@@ -1,0 +1,52 @@
+{
+  "name": "Hsubot (Userbot Nodejs)",
+  "description": "Proyek experimental (percobaan) untuk membuat bot menggunakan TDLib yang merupakan wrapper untuk protokol MTProto Telegram.",
+  "keywords": [
+    "telegram",
+    "userbot"
+  ],
+  "repository": "https://github.com/banghasan/hsubot",
+  "env": {
+    "api_id": {
+      "description": "Dapatkan dari my.telegram.org.",
+      "required": true
+    },
+    "api_hash": {
+      "description": "Dapatkan dari my.telegram.org.",
+      "required": true
+    },
+    "bot_token": {
+      "description": "Token bot dari bot father (Jika menggunakan bot api bot_token wajib diisi).",
+      "required": false
+    },
+    "bot_api": {
+      "description": "Jika anda ingin menggunakan bot api variable diisi true.",
+      "value": "false",
+      "required": false
+    },
+    "debug_mode": {
+      "description": "Jika ingin mengaktifkan mode debug isi variable ini true.",
+      "value": "false",
+      "required": false
+    },
+    "debug_level": {
+      "description": "Lebih jelas di sample_config.js.",
+      "required": false
+    },
+    "admin_mode": {
+      "description": "Jika ingin bot hanya bisa digunakan admin isi variable ini true.",
+      "value": "false",
+      "required": false
+    },
+    "admin_id": {
+      "description": "Jika admin mode true maka var ini diisi dengan id kamu.",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-20"
+}

@@ -11,8 +11,8 @@ module.exports = {
 
   // untuk verbose mode
   debug: {
-    active: false,
-    level: 1 // 1 event only, 2 detail, 3 semua termasuk object dan fungsi
+    active: true,
+    level: 0 // 0 minimalis, 1 event only, 2 detail, 3 semua termasuk object dan fungsi
   },
   admin:
   {

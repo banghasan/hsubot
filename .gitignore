@@ -5,10 +5,6 @@ data_botapi/
 bak/
 data/*
 
-# belum saatnya di push
-plugins/
-
-
 # Logs
 logs
 *.log

@@ -70,21 +70,11 @@ Library (helper) ditulis dari awal (from scratch) dan belum selesai.
 
 Tidak hanya library, namun diberikan sample implementasi bot. Ini adalah framewrok bot TD Lib.
 
-## Fungsi Bot
+## Fitur
 
-Semua fungsi bisa diawali dengan salah satu karakter: `/!.`
-
-Fungsi demo berjalan
-
-- ping
-- fw (test foward pesan)
-- getme (example data JSON)
-- json
-- quote
-- wiki [kata kunci]
-- ver (ngecek versi framework bot ini)
-
-Fungsi tersebut sekadar sample saja.
+- Sejak versi `0.3` sudah plugable fitur
+- Bersifat modular dan mudah dikembangkan
+- Command bisa dipantau dengan mengetikkan `.help`
 
 ## File
 

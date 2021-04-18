@@ -1,4 +1,3 @@
-
 const { debug, BOT_API } = require('./config.js');
 const { client, API_BOT_AUTH } = require('./module/client');
 const { Telegram } = require('./Library/telegram');
@@ -30,8 +29,10 @@ client
 client.on('update', update => {
 
     // handle debugging
-    let debugLog
-    if (debug.level == 1) {
+    let debugLog = false
+    if (debug.level == 0) {
+        // minimalis
+    } else if (debug.level == 1) {
         debugLog = '📥 ' + update['_']
     } else if (debug.level == 2) {
         debugLog = update
@@ -41,7 +42,7 @@ client.on('update', update => {
         debug.active = false
     }
 
-    if (debug.active)
+    if (debug.active && debugLog)
         console.log(JSON.stringify(debugLog, null, 1))
 
 
