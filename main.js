@@ -31,33 +31,26 @@ client.on('update', update => {
 
     // handle debugging
     let debugLog
-    switch (debug.level) {
-        case 1:
-            debugLog = '📥 ' + update['_']
-            break;
-
-        case 2:
-            debugLog = update
-            break;
-        case 3:
-            debugLog = JSON.stringify(update, null, 1)
-            break;
-
-        default:
-            debug.active = false
-            break;
+    if (debug.level == 1) {
+        debugLog = '📥 ' + update['_']
+    } else if (debug.level == 2) {
+        debugLog = update
+    } else if (debug.level == 3) {
+        debugLog = JSON.stringify(update, null, 1)
+    } else {
+        debug.active = false
     }
 
     if (debug.active)
         console.log(JSON.stringify(debugLog, null, 1))
 
 
-    // incoming event
+    // tangkap event
 
     switch (update['_']) {
 
         case 'updateNewMessage':
-            if (!BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true).catch(e => console.log('ERROR:', e))
+            if (!BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true)
             updateNewMessage(tg, update)
             break;
 
