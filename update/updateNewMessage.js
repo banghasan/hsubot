@@ -177,8 +177,13 @@ module.exports = function (tg, update) {
     }
 
 
-    if (cocok = /^[!\/\.](html|markdown) (.+)/i.exec(msg.text)) {
-        return tg.sendMessage(message.chat_id, cocok[2], cocok[1])
+    if (cocok = /(^[!\/\.](html|markdown))/i.exec(msg.text)) {
+        pesan = msg.text.replace(cocok[1], '').trim()
+        if (pesan < 2) return tg.sendMessage(message.chat_id, `❌ Syntax keliru`, false, false, false, false, message.id)
+
+        return tg.sendMessage(message.chat_id, pesan, cocok[2])
+            .catch(result => tg.sendMessage(message.chat_id, `❌ ${result.message}`, false, false, false, false, message.id))
+
     }
 
     if (cocok = /^[!\/\.]getuser ([\d]+)$/i.exec(msg.text)) {
