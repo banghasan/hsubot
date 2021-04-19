@@ -8,6 +8,7 @@ let foto = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id, 'photo')
             let data = './data/banghasan_pedang.jpg'
             let caption = 'Klotok, <b>Kediri</b>'
             return tg.sendPhoto(message.chat_id, data, caption, 'html').catch(e => console.log(e))
@@ -25,6 +26,7 @@ let dokumen = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id, 'document')
             let data = './data/hsubot.pdf'
             let caption = '<b>HSubot</b>: Salam Perkenalan'
             return tg.sendDocument(message.chat_id, data, caption, 'html').catch(e => console.log(e))
@@ -42,6 +44,7 @@ let video = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id, 'video')
             // contoh lain: https://gist.github.com/jsturgis/3b19447b304616f18657
             let data = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
             let caption = 'Apa Saja, <b>Contoh</b>'
@@ -60,6 +63,7 @@ let audio = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id, 'audio')
             let data = './data/terpesona.mp3'
             let caption = '<i>Terpesona.. aku terpesona</i>'
             return tg.sendAudio(message.chat_id, data, caption, 'html').catch(e => console.log(e))
@@ -77,6 +81,7 @@ let voice = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id, 'voice')
             let data = './data/terpesona.ogg'
             let caption = '<i>Terpesona.. aku terpesona</i>'
             return tg.sendVoice(message.chat_id, data, caption, 'html').catch(e => console.log(e))
@@ -94,6 +99,7 @@ let sticker = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id)
             let data = './data/sticker.png'
             return tg.sendSticker(message.chat_id, data).catch(e => console.log(e))
         }

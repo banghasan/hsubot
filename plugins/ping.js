@@ -8,6 +8,7 @@ let ping = {
         let text = message.content.text.text
 
         if (this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id)
             return tg.sendMessage(message.chat_id, '🏓 <b>Pooong!</b>', 'html', false, false, false, message.id)
         }
     }
@@ -21,7 +22,8 @@ let pong = {
         let message = update.message
         let text = message.content.text.text
 
-        if (this.regex.exec(text)) {            
+        if (this.regex.exec(text)) {  
+            tg.sendChatAction(message.chat_id)          
             return tg.sendMessage(message.chat_id, '🐧 <b>Ping..uin!</b>', 'html', false, false, false, message.id)
                 .catch(e => console.log(e))
         }

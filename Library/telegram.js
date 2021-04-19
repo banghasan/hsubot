@@ -21,7 +21,7 @@ function Telegram(handle) {
 
 Telegram.prototype = {
     name: 'HSTgLib',
-    versi: '1.1.0',
+    versi: '1.2',
     version: this.versi,
 
     invoke: function (method, parameters = false) {
@@ -136,6 +136,51 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
+    sendChatAction: function (chat_id, type = 'typing') {
+        let action
+        switch (type.toLowerCase()) {
+            case 'photo':
+                action = 'chatActionUploadingPhoto'
+                break;
+            case 'document':
+                action = 'chatActionUploadingDocument'
+                break;
+            case 'video':
+                action = 'chatActionUploadingVideo'
+                break;
+            case 'voice':
+            case 'audio':
+                action = 'chatActionRecordingVoiceNote'
+                break;
+            case 'location':
+            case 'venue':
+                action = 'chatActionChoosingLocation'
+                break;
+            case 'cancel':
+                action = 'chatActionCancel'
+                break;
+            case 'typing':
+            default:
+                action = 'chatActionTyping'
+                break;
+        }
+
+        return this.handle.invoke({
+            '_': "sendChatAction",
+            chat_id: chat_id,
+            'action': { '_': action }
+        })
+
+    },
+
+    getMessage: function (chat_id, message_id) {
+        return this.handle.invoke({
+            '_': "getMessage",
+            chat_id: chat_id,
+            message_id: message_id
+        })
+    },
+
     editMessageText: function (chat_id, message_id, text, parse_mode = false, entities = false, disable_web_page_preview = false) {
         let pesan = this.parseMode(text, parse_mode)
         return this.handle.invoke({
@@ -242,7 +287,7 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    sendPhoto: function (chat_id, photo, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+    sendPhoto: function (chat_id, photo, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
         // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
         let detailData = this.typeFile(photo)
 
@@ -265,7 +310,7 @@ Telegram.prototype = {
             photo: detailData,
         }
 
-        if (caption){ 
+        if (caption) {
             let text = this.parseMode(caption, parse_mode, caption_entities)
             data.input_message_content.caption = text
         }
@@ -273,7 +318,7 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    sendDocument: function (chat_id, document, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+    sendDocument: function (chat_id, document, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
         // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
         let detailData = this.typeFile(document)
 
@@ -296,7 +341,7 @@ Telegram.prototype = {
             document: detailData,
         }
 
-        if (caption){ 
+        if (caption) {
             let text = this.parseMode(caption, parse_mode, caption_entities)
             data.input_message_content.caption = text
         }
@@ -304,7 +349,7 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    sendVideo: function (chat_id, video, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+    sendVideo: function (chat_id, video, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
         // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
         let detailData = this.typeFile(video)
 
@@ -327,7 +372,7 @@ Telegram.prototype = {
             video: detailData,
         }
 
-        if (caption){ 
+        if (caption) {
             let text = this.parseMode(caption, parse_mode, caption_entities)
             data.input_message_content.caption = text
         }
@@ -335,7 +380,7 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    sendAudio: function (chat_id, audio, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+    sendAudio: function (chat_id, audio, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
         // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
         let detailData = this.typeFile(audio)
 
@@ -358,7 +403,7 @@ Telegram.prototype = {
             audio: detailData,
         }
 
-        if (caption){ 
+        if (caption) {
             let text = this.parseMode(caption, parse_mode, caption_entities)
             data.input_message_content.caption = text
         }
@@ -366,7 +411,7 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    sendVoice: function (chat_id, voice, caption = false, parse_mode=false, caption_entities = false, disable_notification=false, reply_to_message_id=false) {
+    sendVoice: function (chat_id, voice, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
         // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
         let detailData = this.typeFile(voice)
 
@@ -389,7 +434,7 @@ Telegram.prototype = {
             voice_note: detailData,
         }
 
-        if (caption){ 
+        if (caption) {
             let text = this.parseMode(caption, parse_mode, caption_entities)
             data.input_message_content.caption = text
         }
@@ -397,7 +442,7 @@ Telegram.prototype = {
         return this.handle.invoke(data)
     },
 
-    sendSticker: function (chat_id, sticker, disable_notification=false, reply_to_message_id=false) {
+    sendSticker: function (chat_id, sticker, disable_notification = false, reply_to_message_id = false) {
         // { '_': 'inputFileBlob', name: file.name, size: file.size, data: file },
         let detailData = this.typeFile(sticker)
 
