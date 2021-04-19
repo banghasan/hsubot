@@ -16,12 +16,20 @@ First Rilis `18 April 2021`
 + [.3.6] TGLib v1.2: sendAction, getMessage.
 + [.3.6] Firmware: example sendAction impl. file
 
-v.0.3.7, 19 April 2021
+v.0.3.7, `19 April 2021`
 
 + [.3.7] Config: overide status plugins. Update Example Config.
 + [.3.7] Plugins: +upload (Foto, Video, Doc, dll), +bash
 + [.3.7] Helper: bug fixes
 + [.3.7] TGLib v1.2.1: bug fix, fileType untuk localFileinput
+
+v.0.3.8, `20 April 2021`
+
++ Login nomor jadi bersih, set debug level ke `0`. Jika ingin mendebug, naikkan levelnya.
++ Bugfixes
++ [.3.8] Config: Debug level bereffect ke verbosityLevel
++ [.3.8] Membersihkan file tidak dipakai
+
 
 ### v0.2 a
 

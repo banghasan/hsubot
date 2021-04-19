@@ -20,14 +20,16 @@ module.exports = {
   admin:
   {
     active: true, // <-- aktifkan jika ingin membatasi bot dipergunakan oleg admin saja
-    id: [123456], // jika skipme false, dan admin true.. id bot harus dimasukkan di sini
+    id: [  // jika skipme false, dan admin true.. id bot harus dimasukkan di sini
+      213567634,
+    ],
   },
 
   // detail aplikasi
 
   // untuk keperluan plugins
   base: {
-    uploadPath : '',
+    uploadPath: '',
   },
 
   // override plugins status

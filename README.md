@@ -60,6 +60,8 @@ Jika menggunakan OS lain, compile sendiri ya.
 
 Setingan diletakkan pada `config.js`
 
+Detail baca di halaman [TDLib](https://github.com/banghasan/hsubot/blob/main/doc/tdlib.md)
+
 #### Android 
 
 Download [https://core.telegram.org/tdlib/tdlib.zip](https://core.telegram.org/tdlib/tdlib.zip)
