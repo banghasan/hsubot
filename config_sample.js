@@ -27,7 +27,7 @@ module.exports = {
 
   // untuk keperluan plugins
   base: {
-    uploadPath = '',
+    uploadPath : '',
   },
 
   // override plugins status
