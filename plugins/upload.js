@@ -14,8 +14,8 @@ let ufoto = {
         if (cocok = this.regex.exec(text)) {
             tg.sendChatAction(message.chat_id, 'photo')
             let tipe = tg.typeFile(cocok[1])
-            let data = (tipe._ === 'inputFileLocal' ? uPath : '') + cocok[1]
-
+            let data = (tipe._ === 'inputFileLocal' && !cocok[1].startsWith('/') ? uPath : '') + cocok[1]
+            if (CONFIG.debug.active) console.log('⬆️ Uploading',data, ' ...')
             return tg.sendPhoto(message.chat_id, data)
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
@@ -35,7 +35,8 @@ let udokumen = {
             tg.sendChatAction(message.chat_id, 'document')
 
             let tipe = tg.typeFile(cocok[1])
-            let data = (tipe._ === 'inputFileLocal' ? uPath : '') + cocok[1]
+            let data = (tipe._ === 'inputFileLocal' && !cocok[1].startsWith('/') ? uPath : '') + cocok[1]
+            if (CONFIG.debug.active) console.log('⬆️ Uploading',data, ' ...')
             return tg.sendDocument(message.chat_id, data)
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
@@ -54,7 +55,8 @@ let uvideo = {
         if (cocok = this.regex.exec(text)) {
             tg.sendChatAction(message.chat_id, 'video')
             let tipe = tg.typeFile(cocok[1])
-            let data = (tipe._ === 'inputFileLocal' ? uPath : '') + cocok[1]
+            let data = (tipe._ === 'inputFileLocal' && !cocok[1].startsWith('/') ? uPath : '') + cocok[1]
+            if (CONFIG.debug.active) console.log('⬆️ Uploading',data, ' ...')
             return tg.sendVideo(message.chat_id, data)
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
@@ -73,7 +75,8 @@ let uaudio = {
         if (cocok = this.regex.exec(text)) {
             tg.sendChatAction(message.chat_id, 'audio')
             let tipe = tg.typeFile(cocok[1])
-            let data = (tipe._ === 'inputFileLocal' ? uPath : '') + cocok[1]
+            let data = (tipe._ === 'inputFileLocal' && !cocok[1].startsWith('/') ? uPath : '') + cocok[1]
+            if (CONFIG.debug.active) console.log('⬆️ Uploading',data, ' ...')
             return tg.sendAudio(message.chat_id, data)
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
@@ -92,7 +95,8 @@ let uvoice = {
         if (cocok = this.regex.exec(text)) {
             tg.sendChatAction(message.chat_id, 'voice')
             let tipe = tg.typeFile(cocok[1])
-            let data = (tipe._ === 'inputFileLocal' ? uPath : '') + cocok[1]
+            let data = (tipe._ === 'inputFileLocal' && !cocok[1].startsWith('/') ? uPath : '') + cocok[1]
+            if (CONFIG.debug.active) console.log('⬆️ Uploading',data, ' ...')
             return tg.sendVoice(message.chat_id, data)
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
@@ -111,7 +115,8 @@ let usticker = {
         if (cocok = this.regex.exec(text)) {
             tg.sendChatAction(message.chat_id)
             let tipe = tg.typeFile(cocok[1])
-            let data = (tipe._ === 'inputFileLocal' ? uPath : '') + cocok[1]
+            let data = (tipe._ === 'inputFileLocal' && !cocok[1].startsWith('/') ? uPath : '') + cocok[1]
+            if (CONFIG.debug.active) console.log('⬆️ Uploading',data, ' ...')
             return tg.sendSticker(message.chat_id, data)
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
