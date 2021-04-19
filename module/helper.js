@@ -1,4 +1,4 @@
-// const { Util } = require('../module/util');
+const { Util } = require('../module/util');
 const { debug } = require('../config.js');
 // require('console-stamp')(console, 'HH:MM:ss.l');
 
@@ -21,9 +21,9 @@ let help = {
                 if (plugin.name.toLowerCase() == cocok[1].toLowerCase()) {
                     ketemu = true
                     let pesan = 'Fungsi tersebut tidak ada keterangan.'
-                    if (plugin.clue) pesan = plugin.name
-                    pesan += '\nstatus: ' + plugin.status ? '✅ aktif' : '❌ mati'
-                    pesan += '\n' + plugin.clue.join('\n')
+                    if (plugin.clue) pesan = `🔖 Nama: <code>${plugin.name}</code>`
+                    pesan += `\n\n ${(plugin.status ? '✅' : '❌')} Status: ${(plugin.status ? 'ON' : 'OFF')}`
+                    pesan += '\n\n' + plugin.clue.join('\n')
 
                     return tg.sendMessage(message.chat_id, pesan, 'html', false, false, false, message.id)
                         .catch(e => console.log(e))
@@ -49,9 +49,19 @@ let list = {
 
         if (this.regex.exec(text)) {
             let pesan = 'Format: <code>.help [command]</code>'
-            pesan += '\n\nDaftar command bot :\n'
+            pesan += '\n\nDaftar command bot :\n<code>'
 
-            plugins.forEach(plugin => pesan += `\n - ${plugin.status ? '✅ ' : '❌ '} ${plugin.name}`)
+            let i = 0
+
+            plugins.forEach(plugin => {
+                pesan += (i % 2 == 0) ? '\n ': ' '
+                let namePlugin = plugin.name.padEnd(15, ' ')
+                pesan += `${plugin.status ? '✅ ' : '❌ '} ${ Util.clearHTML(namePlugin) }`
+                i++
+            })
+
+            pesan += `</code>\n\n🔆 Total <code>${(new Intl.NumberFormat('id-ID').format(i))}</code> plugins.`
+
 
             return tg.sendMessage(message.chat_id, pesan, 'html', false, false, false, message.id)
                 .catch(e => console.log(e))
