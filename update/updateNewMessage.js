@@ -1,4 +1,4 @@
-const { debug, admin, BOT_TOKEN, BOT_API } = require('../config.js');
+const CONFIG = require('../config.js');
 const { plugins } = require('../module/plugins');
 const helper = require('../module/helper');
 const { Util } = require('../module/util');
@@ -7,8 +7,8 @@ require('console-stamp')(console, 'HH:MM:ss.l');
 
 var userbot_id = false
 
-if (BOT_API) {
-    let split = BOT_TOKEN.split(':')
+if (CONFIG.BOT_API) {
+    let split = CONFIG.BOT_TOKEN.split(':')
     if (split.length < 2) {
         console.log('❌ TOKEN BOT Keliru!')
         process.exit(1)
@@ -18,8 +18,8 @@ if (BOT_API) {
 
 module.exports = function (tg, update) {
     if (!userbot_id)
-        if (!BOT_API) {
-            if (debug.active) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
+        if (!CONFIG.BOT_API) {
+            if (CONFIG.debug.active) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
             tg.getMe().then(result => userbot_id = result.id)
         }
 
@@ -31,10 +31,10 @@ module.exports = function (tg, update) {
         return false
     }
 
-    if (admin.active)
-        if (!Util.punyaAkses(admin.id, message.sender.user_id)) {
-            if (debug.active) {
-                if (debug.level > 1) console.log('❌ Dia tidak ada akses', message.sender.user_id)
+    if (CONFIG.admin.active)
+        if (!Util.punyaAkses(CONFIG.admin.id, message.sender.user_id)) {
+            if (CONFIG.debug.active) {
+                if (CONFIG.debug.level > 1) console.log('❌ Dia tidak ada akses', message.sender.user_id)
             }
             return false
         }
@@ -56,7 +56,7 @@ module.exports = function (tg, update) {
         let result = plugin.run(tg, update)
         if (result) {
             ketemu = true
-            if (debug.active) console.log('-> 🥅 Terdeteksi:', { name: plugin.name, regex: plugin.regex })
+            if (CONFIG.debug.active) console.log('-> 🥅 Terdeteksi:', { name: plugin.name, regex: plugin.regex })
         }
     })
 

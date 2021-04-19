@@ -1,4 +1,4 @@
-const { debug, BOT_API } = require('./config.js');
+const CONFIG = require('./config.js');
 const { client, API_BOT_AUTH } = require('./module/client');
 const { Telegram } = require('./Library/telegram');
 require('console-stamp')(console, 'HH:MM:ss.l');
@@ -30,19 +30,19 @@ client.on('update', update => {
 
     // handle debugging
     let debugLog = false
-    if (debug.level == 0) {
+    if (CONFIG.debug.level == 0) {
         // minimalis
-    } else if (debug.level == 1) {
+    } else if (CONFIG.debug.level == 1) {
         debugLog = '📥 ' + update['_']
-    } else if (debug.level == 2) {
+    } else if (CONFIG.debug.level == 2) {
         debugLog = update
-    } else if (debug.level == 3) {
+    } else if (CONFIG.debug.level == 3) {
         debugLog = update
     } else {
-        debug.active = false
+        CONFIG.debug.active = false
     }
 
-    if (debug.active && debugLog)
+    if (CONFIG.debug.active && debugLog)
         console.log(JSON.stringify(debugLog, null, 1))
 
 
@@ -51,7 +51,7 @@ client.on('update', update => {
     switch (update['_']) {
 
         case 'updateNewMessage':
-            if (!BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true)
+            if (!CONFIG.BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true)
             updateNewMessage(tg, update)
             break;
 
@@ -68,7 +68,7 @@ client.on('update', update => {
 
 async function main() {
     await client.connect()
-    if (BOT_API) {
+    if (CONFIG.BOT_API) {
         await client.login(() => API_BOT_AUTH)
     } else {
         await client.login()
