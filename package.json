@@ -1,6 +1,6 @@
 {
   "name": "hsubot",
-  "version": "1.0.0",
+  "version": "0.3.8",
   "description": "Proyek eksperimental userbot Telegram",
   "main": "main.js",
   "scripts": {

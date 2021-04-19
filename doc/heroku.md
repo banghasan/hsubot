@@ -13,7 +13,7 @@ Ini test saja, bener atau gak silakan dicoba-coba.
 
 ### Userbot
 
-Input nomor handphone, langsung saja meski kena flow message.
+Input nomor handphone, langsung saja meski kena flow message. Atau set DEBUG pada level 0
 
 Silakan disesuaikan agar bisa berjalan.
 

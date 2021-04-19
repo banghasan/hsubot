@@ -23,7 +23,7 @@ Untuk melihat [history versi](https://github.com/banghasan/hsubot/blob/main/doc/
 ## Penampilan
 
 ![stats](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/stats.jpg)
-![session](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/session.jpg)
+![Terminal](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/terminal.jpg)
 
 ## Menjalankan
 
@@ -32,7 +32,7 @@ Untuk melihat [history versi](https://github.com/banghasan/hsubot/blob/main/doc/
 3. copy `config_sample.js` ke `config.js`
 4. edit `config.js` baca penjelasannya
 5. `npm install` untuk menginstall dependency paket
-6. Jalankan userbot: `node main.js` atau `npm start`
+6. Jalankan userbot: `npm start` atau `node main.js`
 
 ## Config
 
