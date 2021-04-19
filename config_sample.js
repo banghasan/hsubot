@@ -4,7 +4,7 @@ module.exports = {
   API_HASH: 'copasDiSini',
 
   // path TDLib (tersedia untuk Linux 64 compile via Ubuntu 20.04)
-  pathTDLib : './tdlib/libtdjson.so',
+  pathTDLib: './tdlib/libtdjson.so',
 
   // aktifkan jika pakai bot API
   BOT_API: false,
@@ -16,11 +16,19 @@ module.exports = {
     active: true,
     level: 0 // 0 minimalis, 1 event only, 2 detail, 3 semua termasuk object dan fungsi
   },
+
   admin:
   {
-    active: true, // <-- selalu aktifkan saja
-    id: [123456], // <-- batasi di sini, jika bot pengen diproses.. kasih ID nya bot sekalian
+    active: true, // <-- aktifkan jika ingin membatasi bot dipergunakan oleg admin saja
+    id: [123456], // jika skipme false, dan admin true.. id bot harus dimasukkan di sini
   },
 
+  // detail aplikasi
+
+  // userbot: jika true, maka pesan ditandai terbaca
+  terbaca: true,
+
+  // aktifkan jika pesan sendiri tidak ingin diproses
+  skipme: false,
 
 }

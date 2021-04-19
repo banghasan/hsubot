@@ -17,18 +17,18 @@ if (CONFIG.BOT_API) {
 }
 
 module.exports = function (tg, update) {
-    if (!userbot_id)
-        if (!CONFIG.BOT_API) {
+    if (CONFIG.skipme) {
+        if (!userbot_id && !CONFIG.BOT_API) {
             if (CONFIG.debug.active) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
             tg.getMe().then(result => userbot_id = result.id)
         }
+    }
 
     let message = update.message
 
-    if (message.sender.user_id == userbot_id) {
-        // tulis coding di sini jika pengen diproses
-        // console.log('Pesan sendiri tidak diproses.')
-        return false
+    if (CONFIG.skipme) {
+        if (message.sender.user_id == userbot_id)
+            return (CONFIG.debug.active) ? console.log('👟 skip me') : true
     }
 
     if (CONFIG.admin.active)
@@ -43,7 +43,7 @@ module.exports = function (tg, update) {
     let content = message.content
 
 
-    // deteksi event TEKS saja dulu
+    // Mari kita deteksi event TEKS 
 
     if (!content.text) return false
     if (!content.text.text) return false

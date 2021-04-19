@@ -51,7 +51,7 @@ client.on('update', update => {
     switch (update['_']) {
 
         case 'updateNewMessage':
-            if (!CONFIG.BOT_API) tg.viewMessages(update.message.chat_id, update.message.id, true)
+            if (!CONFIG.BOT_API && CONFIG.terbaca) tg.viewMessages(update.message.chat_id, update.message.id, true)
             updateNewMessage(tg, update)
             break;
 

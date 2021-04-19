@@ -12,6 +12,7 @@ Artinya sudah selesai, namun kemungkinan besar banyak bugs
 
 + plugins-able
 + [.3.3] TGLib v1.1: send - Photo, Doc, Video, Sticker, Audio, Voice
++ [.3.5] config: terbaca, skipme
 
 ### v0.2 a
 
