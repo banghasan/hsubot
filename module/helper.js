@@ -13,8 +13,7 @@ let help = {
 
         let ketemu = false
 
-        if (debug.active) console.log('♿️ Helper aktif..')
-
+        if (debug.active && debug.level > 0) console.log('♿️ Helper aktif..')
         if (cocok = this.regex.exec(text)) {
             plugins.forEach(plugin => {
 

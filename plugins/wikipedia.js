@@ -10,6 +10,7 @@ let wikipedia = {
         let text = message.content.text.text
 
         if (cocok = this.regex.exec(text)) {
+            tg.sendChatAction(message.chat_id)
             let url = 'https://mhankbarbar.herokuapp.com/api/wiki?q=' + cocok[1]
 
             let data = {

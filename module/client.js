@@ -1,6 +1,7 @@
 const { Client } = require('tdl')
-//const { TDLib } = require('tdl-tdlib-ffi')
 const { TDLib } = require('tdl-tdlib-addon')
+// const { Client } = require('../tdlib/tdl')
+// const { TDLib } = require('../tdlib/tdlib')
 const { API_ID, API_HASH, BOT_TOKEN, BOT_API, pathTDLib } = require('../config.js');
 const APP = require('../app.js');
 // add timestamps in front of log messages
