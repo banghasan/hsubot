@@ -25,6 +25,11 @@ module.exports = {
 
   // detail aplikasi
 
+  // untuk keperluan plugins
+  base: {
+    uploadPath = '',
+  },
+
   // override plugins status
   // namaPlugins = true / false
   plugins: {

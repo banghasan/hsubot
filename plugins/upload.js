@@ -1,4 +1,6 @@
-let uPath = ''
+const CONFIG = require('../config.js');
+
+let uPath = CONFIG.base.uploadPath
 
 let ufoto = {
     name: 'uploadFoto',
