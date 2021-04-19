@@ -1,6 +1,8 @@
 const { Util } = require('./util');
 require('console-stamp')(console, 'HH:MM:ss.l');
-const { debug } = require('../config.js');
+const CONFIG = require('../config.js');
+
+let debug = CONFIG.debug
 
 let folder = "../plugins/"
 let pathPlugins = require("path").join(__dirname, folder);
@@ -16,13 +18,19 @@ require("fs").readdirSync(pathPlugins).forEach(file => {
     let data = require(folder + file);
     let pesan = `[ ${file.padEnd(17, ' ')}] `
     let list = []
-    Util.forEach(data, fungsi => {
-        if (!fungsi.name || !fungsi.regex || !fungsi.run) {
+    Util.forEach(data, plugin => {
+        if (!plugin.name || !plugin.regex || !plugin.run) {
             console.log('- ❌ Gagal load:', file)
             process.exit(1)
         }
-        list.push(fungsi.name)
-        plugins.push(fungsi)
+
+        if (CONFIG.plugins) {
+          if (CONFIG.plugins.hasOwnProperty(plugin.name))
+          plugin.status = CONFIG.plugins[plugin.name]
+        }
+
+        list.push(plugin.name)
+        plugins.push(plugin)
     })
     pesan+= list.join(', ') + `... ✔️`
     if (debug.active) console.log(' 🔖 ',pesan)

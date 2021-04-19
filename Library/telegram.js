@@ -21,7 +21,7 @@ function Telegram(handle) {
 
 Telegram.prototype = {
     name: 'HSTgLib',
-    versi: '1.2',
+    versi: '1.2.1',
     version: this.versi,
 
     invoke: function (method, parameters = false) {
@@ -75,13 +75,15 @@ Telegram.prototype = {
 
 
     typeFile: function (content) {
+
         let data = {}
+        
         if (/^http/i.exec(content)) {
             data = {
                 '_': 'inputFileRemote',
                 id: content
             }
-        } else if (/^(\/|\.\/)/i.exec(content)) {
+        } else if (/^(\/|\.\.?\/|~\/)/i.exec(content)) { // deteksi : awal / atau ./ ../ atau ~/
             data = {
                 '_': 'inputFileLocal',
                 path: content
@@ -93,10 +95,11 @@ Telegram.prototype = {
             }
         } else {
             data = {
-
                 '_': 'inputFileRemote',
                 id: content
             }
+
+            // mode blob belum aku masukkan, butuh waktu buat coba-coba
         }
 
         return data
