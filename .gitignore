@@ -5,6 +5,7 @@ data_botapi/
 bak/
 
 data/*
+clean.sh
 
 # Logs
 logs

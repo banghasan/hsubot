@@ -1,14 +1,10 @@
-## Alpha
+## History
 
-Artinya belum selesai, masih banyak bugs dan sedang proses development
-
-## Beta
-
-Artinya sudah selesai, namun kemungkinan besar banyak bugs
+Log history dari versi developtment
 
 ### v0.3
 
-First Rilis `18 April 2021`
+`18 April 2021`
 
 + [.3] NOW: plugins-able!
 + [.3.3] TGLib v1.1: send - Photo, Doc, Video, Sticker, Audio, Voice
@@ -16,17 +12,16 @@ First Rilis `18 April 2021`
 + [.3.6] TGLib v1.2: sendAction, getMessage.
 + [.3.6] Firmware: example sendAction impl. file
 
-v.0.3.7, `19 April 2021`
+`19 April 2021`
 
 + [.3.7] Config: overide status plugins. Update Example Config.
 + [.3.7] Plugins: +upload (Foto, Video, Doc, dll), +bash
 + [.3.7] Helper: bug fixes
 + [.3.7] TGLib v1.2.1: bug fix, fileType untuk localFileinput
 
-v.0.3.8, `20 April 2021`
+`20 April 2021`
 
-+ Login nomor jadi bersih, set debug level ke `0`. Jika ingin mendebug, naikkan levelnya.
-+ Bugfixes
++ [.3.8] Login nomor jadi bersih, set debug level ke `0`. Jika ingin mendebug, naikkan levelnya.
 + [.3.8] Config: Debug level bereffect ke verbosityLevel
 + [.3.8] Membersihkan file tidak dipakai
 + [.3.9] Load plugins dipengaruhi level debug
