@@ -5,13 +5,43 @@ const APP = require('../app.js');
 // add timestamps in front of log messages
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-const API_BOT_AUTH = {
-    type: 'bot',
-    token: CONFIG.BOT_TOKEN,           // in document say write this line but
-    getToken: () => CONFIG.BOT_TOKEN   // if this line dont set pakase get error and dont work
+let logAuth
+
+if (CONFIG.BOT_API) {
+    logAuth = {
+        type: 'bot',
+        token: CONFIG.BOT_TOKEN,           // in document say write this line but
+        getToken: () => CONFIG.BOT_TOKEN   // if this line dont set pakase get error and dont work
+    }
+
+    pathData = './data_botapi'
+} else {
+    logAuth = {
+        type: 'user',
+        getPhoneNumber: (retry) =>
+            retry
+                ? Promise.reject('Invalid phone number')
+                : Promise.resolve(CONFIG.phone),
+    }
+
+    pathData = './data_userbot'
 }
 
-let pathData = CONFIG.BOT_API ? './data_botapi' : './data_userbot'
+
+/*
+
+Untuk TEST AUTH
+
+client.login({
+  phoneNumber: '...',
+  getAuthCode: async (retry) => {
+    const code = await getPhoneCodeSomehow()
+    return code
+  }
+})
+
+*/
+
 
 const tdlib = new TDLib(CONFIG.pathTDLib)
 
@@ -35,5 +65,5 @@ const client = new Client(tdlib, {
 
 module.exports = {
     client,
-    API_BOT_AUTH
+    logAuth
 }

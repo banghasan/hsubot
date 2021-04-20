@@ -29,7 +29,8 @@ v.0.3.8, `20 April 2021`
 + Bugfixes
 + [.3.8] Config: Debug level bereffect ke verbosityLevel
 + [.3.8] Membersihkan file tidak dipakai
-
++ [.3.9] Load plugins dipengaruhi level debug
++ [.3.9] Config: input nomor hp dari sini
 
 ### v0.2 a
 

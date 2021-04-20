@@ -7,9 +7,15 @@ module.exports = {
   pathTDLib: './tdlib/libtdjson.so',
 
   // aktifkan jika pakai bot API
+  // jika bot API aktif, userbot otomatis OFF
   BOT_API: false,
-  // HANYA jika BOT_API true, token bot API dari @botfather
+  // token bot API dari @botfather, HANYA jika BOT_API true
   BOT_TOKEN: '',
+
+  // jika konek dengan nomor hp
+  // pake tipe string, format internasional 628xxxxxxx
+
+  phone: '6281234567890', // ini contoh saja, ganti dengan yang sesuai
 
   // untuk verbose mode
   debug: {

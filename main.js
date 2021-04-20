@@ -1,5 +1,5 @@
 const CONFIG = require('./config.js');
-const { client, API_BOT_AUTH } = require('./module/client');
+const { client, logAuth } = require('./module/client');
 const { Telegram } = require('./Library/telegram');
 require('console-stamp')(console, 'HH:MM:ss.l');
 const updateNewMessage = require('./update/updateNewMessage')
@@ -71,7 +71,8 @@ async function main() {
     if (CONFIG.BOT_API) {
         await client.login(() => API_BOT_AUTH)
     } else {
-        await client.login()
+        // await client.login()
+        await client.login(() => logAuth);
     }
 }
 main()
