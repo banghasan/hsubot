@@ -68,11 +68,7 @@ client.on('update', update => {
 
 async function main() {
     await client.connect()
-    if (CONFIG.BOT_API) {
-        await client.login(() => API_BOT_AUTH)
-    } else {
-        // await client.login()
-        await client.login(() => logAuth);
-    }
+    await client.login(() => logAuth);
 }
+
 main()
