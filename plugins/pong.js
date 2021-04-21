@@ -13,16 +13,14 @@ let pong = {
         if (this.regex.exec(text)) {
             return tg.sendMessage(message.chat_id, 'Pingiiin...', false, false, false, false, message.id)
                 .then(result => {
-
-                    let t0 = performance.now();
-
                     // console.log(result)
+                    let t0 = performance.now();                    
                     tg.client.once('message' + result.id, (message) => {
                         // console.log(message)
                         let t1 = performance.now();
-                        let selisih = '<code>' + (t1 - t0).toLocaleString('id-ID') + "</code> milidetik."
+                        let selisih = '<code>' + (t1 - t0).toLocaleString( undefined, { maximumFractionDigits: 2 }) + "</code> milidetik."
                         let pesan = '🐧 <b>Ping-uin!</b>\n👟 berlari dalam ... ' + selisih
-                        tg.editMessageText(message.chat_id, message.id, pesan, 'html')
+                        return tg.editMessageText(message.chat_id, message.id, pesan, 'html')
                     })
                 })
                 .catch(e => console.log(e))
