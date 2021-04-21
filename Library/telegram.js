@@ -15,13 +15,13 @@ Support Grup: @botindonesia
 
 const { Util } = require('../module/util');
 
-function Telegram(handle) {
-    this.handle = handle
+function Telegram(client) {
+    this.client = client
 }
 
 Telegram.prototype = {
     name: 'HSTgLib',
-    versi: '1.2.1',
+    versi: '1.3',
     version: this.versi,
 
     invoke: function (method, parameters = false) {
@@ -35,7 +35,7 @@ Telegram.prototype = {
             })
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     parseMode: function (text, parse_mode, entities) {
@@ -54,7 +54,7 @@ Telegram.prototype = {
         }
 
         if (parse_mode) {
-            pesan = this.handle.execute({
+            pesan = this.client.execute({
                 _: 'parseTextEntities',
                 parse_mode: { _: parseMode },
                 text: text
@@ -77,7 +77,7 @@ Telegram.prototype = {
     typeFile: function (content) {
 
         let data = {}
-        
+
         if (/^http/i.exec(content)) {
             data = {
                 '_': 'inputFileRemote',
@@ -109,7 +109,7 @@ Telegram.prototype = {
     // fungsi seperti Bot API
 
     getMe() {
-        return this.handle.invoke({ _: 'getMe' })
+        return this.client.invoke({ _: 'getMe' })
     },
 
     sendMessage: function (chat_id, text, parse_mode = false, entities = false, disable_web_page_preview = false, disable_notification = false, reply_to_message_id = false) {
@@ -136,7 +136,7 @@ Telegram.prototype = {
             clear_draft: false
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendChatAction: function (chat_id, type = 'typing') {
@@ -168,7 +168,7 @@ Telegram.prototype = {
                 break;
         }
 
-        return this.handle.invoke({
+        return this.client.invoke({
             '_': "sendChatAction",
             chat_id: chat_id,
             'action': { '_': action }
@@ -177,7 +177,7 @@ Telegram.prototype = {
     },
 
     getMessage: function (chat_id, message_id) {
-        return this.handle.invoke({
+        return this.client.invoke({
             '_': "getMessage",
             chat_id: chat_id,
             message_id: message_id
@@ -186,7 +186,7 @@ Telegram.prototype = {
 
     editMessageText: function (chat_id, message_id, text, parse_mode = false, entities = false, disable_web_page_preview = false) {
         let pesan = this.parseMode(text, parse_mode)
-        return this.handle.invoke({
+        return this.client.invoke({
             '_': "editMessageText",
             chat_id: chat_id,
             message_id: message_id,
@@ -212,7 +212,7 @@ Telegram.prototype = {
             message_id: message_id
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     deleteMessage: function (chat_id, message_id, revoke = false) {
@@ -225,7 +225,7 @@ Telegram.prototype = {
 
         if (revoke) data.revoke = true
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     pinChatMessage: function (chat_id, message_id, disable_notification = false, only_for_self = false) {
@@ -243,7 +243,7 @@ Telegram.prototype = {
             data.only_for_self = only_for_self;
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     unpinChatMessage: function (chat_id, message_id) {
@@ -252,7 +252,7 @@ Telegram.prototype = {
             chat_id: chat_id,
             message_id: message_id
         }
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     unpinAllMessages: function (chat_id) {
@@ -260,7 +260,7 @@ Telegram.prototype = {
             '_': "unpinAllMessages",
             chat_id: chat_id
         }
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     getUser: function (user_id) {
@@ -269,7 +269,7 @@ Telegram.prototype = {
             user_id: user_id,
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     getUserFullInfo: function (user_id) {
@@ -278,7 +278,7 @@ Telegram.prototype = {
             user_id: user_id,
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     searchPublicChat: function (username) {
@@ -287,7 +287,7 @@ Telegram.prototype = {
             username: username,
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendPhoto: function (chat_id, photo, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
@@ -318,7 +318,7 @@ Telegram.prototype = {
             data.input_message_content.caption = text
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendDocument: function (chat_id, document, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
@@ -349,7 +349,7 @@ Telegram.prototype = {
             data.input_message_content.caption = text
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendVideo: function (chat_id, video, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
@@ -380,7 +380,7 @@ Telegram.prototype = {
             data.input_message_content.caption = text
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendAudio: function (chat_id, audio, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
@@ -411,7 +411,7 @@ Telegram.prototype = {
             data.input_message_content.caption = text
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendVoice: function (chat_id, voice, caption = false, parse_mode = false, caption_entities = false, disable_notification = false, reply_to_message_id = false) {
@@ -442,7 +442,7 @@ Telegram.prototype = {
             data.input_message_content.caption = text
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     sendSticker: function (chat_id, sticker, disable_notification = false, reply_to_message_id = false) {
@@ -468,7 +468,36 @@ Telegram.prototype = {
             sticker: detailData,
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
+    },
+
+
+    // remote_file_id : string
+    getRemoteFile: function (remote_file_id) {
+        let data = {
+            '_': "getRemoteFile",
+            remote_file_id: remote_file_id,
+        }
+
+        return this.client.invoke(data)
+    },
+
+
+    /* pakai ini buat download
+     fileID nilai harus integer, dari localfile
+     dapatkan dari getRemoteFile atau getFile
+
+     jika proses selesai is_downloading_completed akan true
+    */
+    downloadFile: function (file_id, priority = 1) {
+        if (!Util.isNumber(file_id)) return false
+        let data = {
+            '_': "downloadFile",
+            file_id: file_id,
+            priority: priority,
+        }
+
+        return this.client.invoke(data)
     },
 
     // userbot
@@ -479,7 +508,7 @@ Telegram.prototype = {
             query: query,
         }
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     viewMessages: function (chat_id, message_id, force_read = false) {
@@ -492,7 +521,7 @@ Telegram.prototype = {
 
         if (force_read) data.force_read = true
 
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
     getChatStatistics: function (chat_id) {
@@ -500,7 +529,7 @@ Telegram.prototype = {
             '_': "getChatStatistics",
             chat_id: chat_id
         }
-        return this.handle.invoke(data)
+        return this.client.invoke(data)
     },
 
 }

@@ -56,7 +56,13 @@ client.on('update', update => {
             break;
 
         case 'updateMessageSendSucceeded':
+            client.emit('message'+update.old_message_id, update.message)
             break;
+
+        case 'updateFile':
+            // sekadar buat dev
+            if (CONFIG.debug.active) console.log('receive updateFile file_id=' + update.file.id, update);
+            break
 
         case 'updateConnectionState':
             break;
