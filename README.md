@@ -20,6 +20,8 @@ Pada kasus mention all user dan broadcast, aplikasi ini tidak bertanggung jawab 
 
 Untuk melihat [history versi](https://github.com/banghasan/hsubot/blob/main/doc/history.md)
 
+
+
 ## Penampilan
 
 ![stats](https://raw.githubusercontent.com/banghasan/hsubot/main/screenshot/stats.jpg)
@@ -52,11 +54,29 @@ Jangan lupa di set tokennya :
 
     BOT_TOKEN: '123456:abcdefghi'
 
+### Dependency
+
+Belum diteliti lebih lanjut apa aja.
+
+Biar aman, installa saja lah 
+
+#### Ubuntu/Debian:
+
+    sudo apt-get install make git zlib1g-dev libssl-dev gperf php-cli cmake g++
+
+#### CentOS
+
+    sudo yum install -y gcc-c++ make git zlib-devel openssl-devel php cmake
+
+#### Alphine
+
+    sudo apk add --update alpine-sdk linux-headers git zlib-dev openssl-dev gperf php cmake    
+
 ### TDLib
 
 TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
 
-Jika menggunakan OS lain, compile sendiri ya.
+Jika menggunakan OS lain (Android/Windows/Mac), compile sendiri ya. Kalau sesama Ubuntu/Debian, tidak perlu build. Hanya install dependency nya saja.
 
 Setingan diletakkan pada `config.js`
 

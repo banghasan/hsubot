@@ -21,8 +21,10 @@ function Telegram(client) {
 
 Telegram.prototype = {
     name: 'HSTgLib',
-    versi: '1.3',
+    versi: '1.4',
     version: this.versi,
+
+    id: null,
 
     invoke: function (method, parameters = false) {
         let data = {
@@ -471,6 +473,16 @@ Telegram.prototype = {
         return this.client.invoke(data)
     },
 
+    // remote_file_id : int32
+    // Returns information about a file; this is an offline request.
+    getFile: function (file_id) {
+        let data = {
+            '_': "getFile",
+            file_id: file_id,
+        }
+
+        return this.client.invoke(data)
+    },
 
     // remote_file_id : string
     getRemoteFile: function (remote_file_id) {
@@ -528,6 +540,24 @@ Telegram.prototype = {
         let data = {
             '_': "getChatStatistics",
             chat_id: chat_id
+        }
+        return this.client.invoke(data)
+    },
+
+
+    // method yang jarang dipakai
+
+    joinChat: function (chat_id) {
+        let data = {
+            '_': "joinChat",
+            chat_id: chat_id
+        }
+        return this.client.invoke(data)
+    },
+
+    destroy: function () {
+        let data = {
+            '_': "destroy"
         }
         return this.client.invoke(data)
     },

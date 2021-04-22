@@ -50,6 +50,11 @@ client.on('update', update => {
 
     switch (update['_']) {
 
+        case 'updateOption' :
+            // dapetin ID dari sini aja
+            if (update.name == 'my_id') tg.id = update.value.value
+            break;
+
         case 'updateNewMessage':
             if (!CONFIG.BOT_API && CONFIG.terbaca) tg.viewMessages(update.message.chat_id, update.message.id, true)
             updateNewMessage(tg, update)

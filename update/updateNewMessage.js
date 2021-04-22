@@ -5,30 +5,14 @@ const { Util } = require('../module/util');
 const APP = require('../app.js');
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-var userbot_id = false
-
-if (CONFIG.BOT_API) {
-    let split = CONFIG.BOT_TOKEN.split(':')
-    if (split.length < 2) {
-        console.log('❌ TOKEN BOT Keliru!')
-        process.exit(1)
-    }
-    userbot_id = split[0]
-}
-
 module.exports = function (tg, update) {
-    if (CONFIG.skipme) {
-        if (!userbot_id && !CONFIG.BOT_API) {
-            if (CONFIG.debug.active) console.log('🔖 FYI, userbot_id belum dapet - tidak perlu khawatir.')
-            tg.getMe().then(result => userbot_id = result.id)
-        }
-    }
-
     let message = update.message
 
-    if (CONFIG.skipme) {
-        if (message.sender.user_id == userbot_id)
-            return (CONFIG.debug.active) ? console.log('👟 skip me') : true
+    if (CONFIG.skipMe) {
+        if (message.sender.user_id == tg.id) {
+            if (CONFIG.debug.active && CONFIG.debug.level > 1) console.log('👟 skip me')
+            return 1
+        }
     }
 
     if (CONFIG.admin.active)

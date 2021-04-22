@@ -27,10 +27,15 @@ Log history dari versi developtment
 + [.3.9] Load plugins dipengaruhi level debug
 + [.3.9] Config: input nomor hp dari sini
 
-`20 April 2021`
+`21 April 2021`
 
 + [.3.11] TGLib 1.3: handle diganti client, +getRemoteFile, +downloadFile
 + [.3.11] Plugins: .pong dengan responsif time
+
+`22 April 2021`
++ [.3.12] TGLib v1.4: menambahkan id, sekaligus mengganti mendapatkan metode id pada update
++ [.3.12] TGLib v1.4: getFile, destroy, joinChat
++ [.3.12] Config: skipMessage, jika true pas launching bot pesan lama ga akan diproses
 
 ### v0.2 a
 

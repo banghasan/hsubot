@@ -46,12 +46,12 @@ client.login({
 const tdlib = new TDLib(CONFIG.pathTDLib)
 
 const client = new Client(tdlib, {
-    apiId: CONFIG.API_ID,
-    apiHash: CONFIG.API_HASH,
+    apiId: CONFIG.API_ID ? CONFIG.API_ID : 0,
+    apiHash: CONFIG.API_HASH ? CONFIG.API_HASH : '1' ,
     databaseDirectory: pathData + '/_td_database',
     filesDirectory: pathData + '/_td_files',
 
-    skipOldUpdates: true,
+    skipOldUpdates: CONFIG.skipMessage,
     verbosityLevel: CONFIG.debug.level,
 
     tdlibParameters: {
