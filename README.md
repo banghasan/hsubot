@@ -62,15 +62,15 @@ Biar aman, installa saja lah
 
 #### Ubuntu/Debian:
 
-    sudo apt-get install make git zlib1g-dev libssl-dev gperf php-cli cmake g++
+    sudo apt-get install make git zlib1g-dev libssl-dev cmake g++
 
 #### CentOS
 
-    sudo yum install -y gcc-c++ make git zlib-devel openssl-devel php cmake
+    sudo yum install -y gcc-c++ make git zlib-devel openssl-devel cmake
 
 #### Alphine
 
-    sudo apk add --update alpine-sdk linux-headers git zlib-dev openssl-dev gperf php cmake    
+    sudo apk add --update alpine-sdk linux-headers git zlib-dev openssl-dev cmake
 
 ### TDLib
 
