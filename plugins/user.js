@@ -1,3 +1,5 @@
+// getUser adalah mode offline, hanya user yang sudah pernah mengontak dan yang ada di db local
+
 let getuser = {
     name: 'getUser',
     status: true,

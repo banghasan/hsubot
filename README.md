@@ -1,5 +1,7 @@
 ## HSUbot
 
+![art](https://raw.githubusercontent.com/banghasan/hsubot/dev/art/HSubot_logo_320_320.jpg)
+
 Proyek experimental (percobaan) untuk membuat bot menggunakan TDLib yang merupakan wrapper untuk protokol MTProto Telegram
 
 Bisa konek menggunakan account biasa (nomor handphone), bisa juga menggunakan bot API.
