@@ -33,9 +33,14 @@ Log history dari versi developtment
 + [.3.11] Plugins: .pong dengan responsif time
 
 `22 April 2021`
-+ [.3.12] TGLib v1.4: menambahkan id, sekaligus mengganti mendapatkan metode id pada update
++ [.3.12] TGLib v1.4: menambahkan id, sekaligus mengganti mendapatkan metode `userbot_id` pada proses update
 + [.3.12] TGLib v1.4: getFile, destroy, joinChat
 + [.3.12] Config: skipMessage, jika true pas launching bot pesan lama ga akan diproses
+
+
+`24 April 2021`
+
++ [.3.13] Plugins: bugfix getUser
 
 ### v0.2 a
 

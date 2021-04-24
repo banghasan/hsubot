@@ -25,6 +25,7 @@ Telegram.prototype = {
     version: this.versi,
 
     id: null,
+    tasks: [],
 
     invoke: function (method, parameters = false) {
         let data = {
@@ -265,6 +266,8 @@ Telegram.prototype = {
         return this.client.invoke(data)
     },
 
+    // Creates a function, which returns information about a user by their identifier. 
+    // INGAT: This is an offline request if the current user is not a bot.
     getUser: function (user_id) {
         let data = {
             '_': "getUser",

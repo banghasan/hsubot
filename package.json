@@ -1,6 +1,6 @@
 {
   "name": "hsubot",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "description": "Proyek eksperimental userbot Telegram menggunakan TDLib (wrap MTProto)",
   "main": "main.js",
   "scripts": {

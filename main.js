@@ -66,7 +66,12 @@ client.on('update', update => {
 
         case 'updateFile':
             // sekadar buat dev
-            if (CONFIG.debug.active) console.log('receive updateFile file_id=' + update.file.id, update);
+            // console.log('RAW',update)
+
+            // console.log(tg.tasks)
+            // client.emit('updateFile', update)
+
+            // if (CONFIG.debug.active) console.log('receive updateFile file_id=' + update.file.id, update);
             break
 
         case 'updateConnectionState':

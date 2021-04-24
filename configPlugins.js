@@ -13,7 +13,7 @@ module.exports = {
         quotes: false, wikipedia: false,
         uploadFoto: true, uploadDokumen: true, uploadVideo: true,
         uploadAudio: true, uploadVoice: true, uploadSticker: true,
-        getUser: false,
+        getUser: true,
     },
     
 }

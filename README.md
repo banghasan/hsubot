@@ -58,7 +58,7 @@ Jangan lupa di set tokennya :
 
 Belum diteliti lebih lanjut apa aja.
 
-Biar aman, installa saja lah 
+Biar aman, install saja lah 
 
 #### Ubuntu/Debian:
 
@@ -72,9 +72,11 @@ Biar aman, installa saja lah
 
     sudo apk add --update alpine-sdk linux-headers git zlib-dev openssl-dev cmake
 
+Beberapa case, butuh `python` juga yang terinstall.
+
 ### TDLib
 
-TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`
+TDLib yang disediakan di sini, dicompile dengan menggunakan `Ubuntu 20.04`.
 
 Jika menggunakan OS lain (Android/Windows/Mac), compile sendiri ya. Kalau sesama Ubuntu/Debian, tidak perlu build. Hanya install dependency nya saja.
 
