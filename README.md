@@ -1,6 +1,6 @@
 ## HSUbot
 
-![art](https://raw.githubusercontent.com/banghasan/hsubot/dev/art/HSubot_logo_320_320.jpg)
+![art](https://raw.githubusercontent.com/banghasan/hsubot/dev/art/HSubot_logo_640_320.jpg)
 
 Proyek experimental (percobaan) untuk membuat bot menggunakan TDLib yang merupakan wrapper untuk protokol MTProto Telegram
 
