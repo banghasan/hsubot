@@ -1,6 +1,6 @@
 let invoke = {
     name: 'invoke',
-    status: true,
+    status: false,
     clue: ['Fungsi: Memanggil command langsung ke MTProto', 'Format:\n<code> .invoke method [dataJSON]</code>'],
     regex: /^([!\.\/]invoke ([\w_]+))/i,
     run: function (tg, update) {
@@ -16,7 +16,10 @@ let invoke = {
                 return tg.sendMessage(message.chat_id, '❌ ' + e, false, false, false, false, message.id)
             }
             return tg.invoke(method, dataInvoke)
-                .then(result => tg.sendMessage(message.chat_id, JSON.stringify(result, null, 2), false, false, false, false, message.id))
+                .then(result => {
+                    console.log(result)
+                    tg.sendMessage(message.chat_id, JSON.stringify(result, null, 2), false, false, false, false, message.id)
+                })
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
     }

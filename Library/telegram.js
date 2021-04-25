@@ -21,7 +21,7 @@ function Telegram(client) {
 
 Telegram.prototype = {
     name: 'HSTgLib',
-    versi: '1.4',
+    versi: '1.4.1',
     version: this.versi,
 
     id: null,
@@ -545,6 +545,44 @@ Telegram.prototype = {
             chat_id: chat_id
         }
         return this.client.invoke(data)
+    },
+
+    // Returns information about a chat by its identifier, this is an offline request if the current user is not a bot.
+    getChat: function (chat_id) {
+        let data = {
+            '_': "getChat",
+            chat_id: chat_id
+        }
+        return this.client.invoke(data)
+    },
+
+    // Returns an ordered list of chats in a chat list.
+    getChats: function () {
+        return this.client.invoke({
+            _: 'getChats',
+            offset_order: '9223372036854775807',
+            offset_chat_id: 0,
+            limit: 1000
+        });
+    },
+
+    getChatList: async function () {
+        let { chat_ids } = await this.getChats()
+
+        const chats = [];
+        for (const chat_id of chat_ids) {
+            const chat = await this.getChat(chat_id)
+            let data = {
+                id: chat.id,
+                type: chat.type._,
+                title: chat.title,
+                permissions: chat.permissions
+            }
+            chats.push(data);
+            // console.log(chat)
+        }
+
+        return chats
     },
 
 

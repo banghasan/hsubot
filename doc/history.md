@@ -44,7 +44,13 @@ Log history dari versi developtment
 
 `25 April 2021`
 
-+ [.3.13] Plugins: pong, satuan diubah jadi detik
++ [.3.13] **Plugins** pong, satuan diubah jadi detik
++ [.3.14] **Plugins** +start
++ [.3.14] **updateNewMessage** cek status helper
++ [.3.14] rename configPlugins ke plugins.conf
++ [.3.14] **Plugins** rename uploadName dengan upName, perbaikan getMe
++ [.3.14] TGLib v1.4.1: getChat, getChats, getChatList
++ [.3.14] **Plugins** `user` .chatlist
 
 ### v0.2 a
 

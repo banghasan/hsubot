@@ -3,7 +3,7 @@ const CONFIG = require('../config.js');
 let uPath = CONFIG.base.uploadPath
 
 let ufoto = {
-    name: 'uploadFoto',
+    name: 'upFoto',
     status: true,
     clue: ['Fungsi: Upload foto', 'Format:<code>\n .foto [id/file/url]\n .photo [id/file/url]</code>'],
     regex: /^[!\/\.](?:fo|pho)to (.+)$/i,
@@ -23,7 +23,7 @@ let ufoto = {
 }
 
 let udokumen = {
-    name: 'uploadDokumen',
+    name: 'upDokumen',
     status: true,
     clue: ['Fungsi: upload dokumen', 'Format:<code>\n .doc [id/file/url]</code>'],
     regex: /^[!\/\.](?:doc|doc|document) (.+)$/i,
@@ -45,7 +45,7 @@ let udokumen = {
 }
 
 let uvideo = {
-    name: 'uploadVideo',
+    name: 'upVideo',
     status: true,
     clue: ['Fungsi: upload video', 'Format:<code>\n .video [id/file/url]</code>'],
     regex: /^[!\/\.](?:vid|video) (.+)$/i,
@@ -65,7 +65,7 @@ let uvideo = {
 }
 
 let uaudio = {
-    name: 'uploadAudio',
+    name: 'upAudio',
     status: true,
     clue: ['Fungsi: Upload audio', 'Format:<code>\n .audio [id/file/url]</code>'],
     regex: /^[!\/\.](?:audio) (.+)$/i,
@@ -85,7 +85,7 @@ let uaudio = {
 }
 
 let uvoice = {
-    name: 'uploadVoice',
+    name: 'upVoice',
     status: true,
     clue: ['Fungsi: Upload voice', 'Format:<code>\n .voice [id/file/url]</code>'],
     regex: /^[!\/\.](?:voice) (.+)$/i,
@@ -105,7 +105,7 @@ let uvoice = {
 }
 
 let usticker = {
-    name: 'uploadSticker',
+    name: 'upSticker',
     status: true,
     clue: ['Fungsi: Upload sticker', 'Format:<code>\n .sticker [id/file/url]</code>'],
     regex: /^[!\/\.](?:sticker) (.+)$/i,

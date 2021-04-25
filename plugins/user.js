@@ -11,13 +11,13 @@ let getuser = {
 
         if (cocok = this.regex.exec(text)) {
             return tg.getUser(Number(cocok[1])).then(result => {
-                console.log(result)
+                // console.log(result)
                 let pesan = `🆔 ID: ${result.id}\n\n👤 First Name: ${result.first_name}`
-                if (result.last_name) pesan += '\n👤 Last Name: ' + result.last_name
+                if (result.last_name) pesan += '\n  └ Last Name: ' + result.last_name
                 if (result.username) pesan += '\n🔰 Username: @' + result.username
                 if (result.phone_number) pesan += '\n☎️ Phone: ' + result.phone_number
                 pesan += `\n\n ⚜️ ${result.type._}`
-                if (result.is_contact) pesan += `\n📱 dalam kontak`
+                if (result.is_contact) pesan += `\n📱 ada dalam kontak`
                 if (result.is_mutual_contact) pesan += `\n♾ mutual kontak`
                 if (result.is_support) pesan += `\n♿️ support`
                 if (result.is_verified) pesan += `\n✅ verified`
@@ -36,8 +36,35 @@ let getuser = {
 }
 
 
+const { Util } = require('../module/util');
+
+let chatList = {
+    name: 'chatList',
+    status: true,
+    clue: ['Fungsi: melihat daftar chat pada userbot', 'Format:\n <code>.chatlist</code>'],
+    regex: /^[!\/\.]chatlist$/i,
+    run: function (tg, update) {
+        let message = update.message
+        let text = message.content.text.text
+
+        if (this.regex.exec(text)) {
+            return tg.getChatList().then( result => {
+                let pesan = '🗂 Daftar Chat:\n'
+                Util.forEach(result, data => {
+                    pesan += `\n 🔗 ${data.id} 👉🏼 ${data.title}`
+                })
+                return tg.sendMessage(message.chat_id, pesan, 'html', false, false, false, message.id)
+            })
+            .catch(result => tg.sendMessage(message.chat_id, `❌ <code>${result.message}</code>`, 'html', false, false, false, message.id))
+            
+        }
+    }
+}
+
+
+
 module.exports = {
-    getuser
+    getuser, chatList
 }
 
 

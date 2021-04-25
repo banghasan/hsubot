@@ -1,4 +1,4 @@
-const plugin = require('./configPlugins')
+const plugin = require('./plugins.conf')
 
 module.exports = {
   // di dapat dari https://my.telegram.org/

@@ -15,7 +15,7 @@ let json = {
 
 let parseMode = {
     name: 'parseMode',
-    status: true,
+    status: false,
     clue: ['Fungsi: Test parse mode', 'Format: <code>.(html|markdown) isi pesan</code>'],
     regex: /^([!\/\.](html|markdown))/i,
     run: function (tg, update) {
