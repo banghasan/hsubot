@@ -42,6 +42,10 @@ Log history dari versi developtment
 
 + [.3.13] Plugins: bugfix getUser
 
+`25 April 2021`
+
++ [.3.13] Plugins: pong, satuan diubah jadi detik
+
 ### v0.2 a
 
 `17 April 2021`

@@ -39,25 +39,6 @@ let udokumen = {
 
             if (CONFIG.debug.active) console.log(`📦 [${tipe._}] Uploading`, data, ' ...')
             return tg.sendDocument(message.chat_id, data)
-
-                .then(message => {
-                    // console.log(update)
-
-                   /*  let dataPush = {
-                        chat_id: message.chat_id,
-                        message_id: message.id,
-                        task: (update) => {
-                            console.log(`${this.chat_id} sedang upload..`)
-                            console.log('Prosesnya:', update)
-                        }
-                    }
-
-                    tg.tasks.push(dataPush)
-
-                    // let task = (update) => console.log('Dari Emit updateFile', update)
-
-                    tg.client.on('updateFile', dataPush.task) */
-                })
                 .catch(result => tg.sendMessage(message.chat_id, `❌ ${cocok[2]}\n<code>${result.message}</code>`, 'html', false, false, false, message.id))
         }
     }

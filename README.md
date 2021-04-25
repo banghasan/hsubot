@@ -12,7 +12,7 @@ Ini adalah rilis awal, dibangun dari scratch. So, masih banyak kekurangan. Jika 
 
 Dalam beberapa kasus, ada teman-teman yang membutuhkan _jembatan_ antara Bot API. Yakni, agar sesama Bot Api dapat berkomunikasi.
 
-Ada juga kasus untuk mendapatkan informasi seluruh isi user pada Grup. Ada juga yang berkeinginan me-mention seluruh anggotanya atau memfilter tertentu.
+Ada juga kasus untuk mendapatkan informasi seluruh isi user pada Grup. Ada juga yang berkeinginan me-mention seluruh anggotanya atau memfilter tertentu. Contoh kasus lain, ingin membersihkan grup menghapus seluruh isi pesan pada supergrup history aktif atau public.
 
 Hal ini hanya dapat dilakukan oleh userbot. 
 
