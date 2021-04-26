@@ -159,6 +159,8 @@ var Util = {
 
         var elapsed = current - previous;
 
+        if (elapsed < 0) return 'baru saja'
+
         if (elapsed < msPerMinute) {
             return Math.round(elapsed / 1000) + ' detik yang lalu';
         }

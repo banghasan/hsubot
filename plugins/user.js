@@ -87,7 +87,7 @@ let whois = {
                 if (user.info.last_name) nama += ' ' + user.info.last_name
 
                 let pesan = `🔰 ID : <code>${user.info.id}</code>`
-                if (user.info.username) pesan += `\n  ├👤 ${user.info.username}`
+                if (user.info.username) pesan += `\n  ├👤 @${user.info.username}`
                 pesan += `\n  └🙋🏽 ${Util.clearHTML(nama)}`
 
                 pesan += `\n\n🗒 Informasi`
@@ -99,11 +99,17 @@ let whois = {
 
                 if (user.detail.group_in_common_count) pesan+= `\n  ├👥 grup yang sama: <code>${user.detail.group_in_common_count}</code>`
 
-                let lastSeen = user.info.status.expires ? user.info.status.expires : user.info.status.was_online
-                let waktuRelatif = Util.timeDifference((lastSeen * 1000), new Date())
-                pesan += `\n  └⏰ Online: ${waktuRelatif}`
+                let lastSeen = false
+                if (user.info.status) {
+                    if (user.info.status.expires) lastSeen = user.info.status.expires
+                    if (user.info.status.was_online) lastSeen = user.info.status.was_online
+                }
 
-                if (user.detail.bio) pesan += `\n\n<i>${Util.clearHTML(user.detail.bio)}</i>`
+                let waktuRelatif = lastSeen ? Util.timeDifference((lastSeen * 1000), new Date()) : '-'
+                if (user.info.status._ == 'userStatusRecently') waktuRelatif = 'baru-baru ini.'
+                pesan += `\n  └⏰ diketahui ${waktuRelatif}`
+
+                if (user.detail.bio) pesan += `\n\n🎶 <i>${Util.clearHTML(user.detail.bio)}</i> 🎶`
 
 
                 return tg.sendMessage(message.chat_id, pesan, 'html', false, false, false, message.id)
