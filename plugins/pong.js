@@ -19,7 +19,7 @@ let pong = {
                         // console.log(message)
                         let t1 = performance.now();
                         let selisih = '<code>' + ((t1 - t0)/1000).toLocaleString( 'id-ID', { maximumFractionDigits: 3 }) + "</code> detik."
-                        let pesan = '🐧 <b>Ping-uin!</b>\n👟 berlari dalam ... ' + selisih
+                        let pesan = '🐧 <b>Ping-uin!</b>\n👟 berlari ... ' + selisih
                         return tg.editMessageText(message.chat_id, message.id, pesan, 'html')
                     })
                 })

@@ -52,6 +52,11 @@ Log history dari versi developtment
 + [.3.14] TGLib v1.4.1: getChat, getChats, getChatList
 + [.3.14] **Plugins** `user` .chatlist
 
+`26 April 2021`
++ [.3.15] **module** `userurl`
++ [.3.15] **module** `util` +timeDifference
++ [.3.15] **Plugins** `user` .whois
+
 ### v0.2 a
 
 `17 April 2021`

@@ -61,10 +61,61 @@ let chatList = {
     }
 }
 
+let whois = {
+    name: 'whois',
+    status: true,
+    clue: ['Fungsi: melihat detail user', 'Format:\n <code>.whois</code> reply pesannya'],
+    regex: /^[!\/\.]whois$/i,
+    run: function (tg, update) {
+        let message = update.message
+        let text = message.content.text.text
 
+        if (this.regex.exec(text)) {
+
+            if (!message.reply_to_message_id) return tg.sendMessage(message.chat_id, `❌ <code>Reply pesannya.</code>`, 'html', false, false, false, message.id)
+
+            return tg.getMessage(message.reply_in_chat_id, message.reply_to_message_id).then( async function (result) {
+                // return console.log(result)
+                let user_id = result.sender.user_id
+                let user = {}
+                user.info = await tg.getUser(user_id)
+                user.detail = await tg.getUserFullInfo(user_id)
+                console.log(user)
+                // console.log(JSON.stringify(user.detail.photo, null, 2))
+
+                let nama = user.info.first_name
+                if (user.info.last_name) nama += ' ' + user.info.last_name
+
+                let pesan = `🔰 ID : <code>${user.info.id}</code>`
+                if (user.info.username) pesan += `\n  ├👤 ${user.info.username}`
+                pesan += `\n  └🙋🏽 ${Util.clearHTML(nama)}`
+
+                pesan += `\n\n🗒 Informasi`
+
+                if (user.info.is_support) pesan += `\n  ├♿️ support`
+                if (user.info.is_verified) pesan += `\n  ├✅ verified`
+                if (user.info.is_scam) pesan += `\n  ├👻 scam`
+                if (user.info.is_fake) pesan += `\n  ├👻 fake`
+
+                if (user.detail.group_in_common_count) pesan+= `\n  ├👥 grup yang sama: <code>${user.detail.group_in_common_count}</code>`
+
+                let lastSeen = user.info.status.expires ? user.info.status.expires : user.info.status.was_online
+                let waktuRelatif = Util.timeDifference((lastSeen * 1000), new Date())
+                pesan += `\n  └⏰ Online: ${waktuRelatif}`
+
+                if (user.detail.bio) pesan += `\n\n<i>${Util.clearHTML(user.detail.bio)}</i>`
+
+
+                return tg.sendMessage(message.chat_id, pesan, 'html', false, false, false, message.id)
+            })
+            .catch(result => tg.sendMessage(message.chat_id, `❌ <code>${result.message}</code>`, 'html', false, false, false, message.id))
+            
+        }
+    }
+}
 
 module.exports = {
-    getuser, chatList
+    getuser, chatList, whois
 }
 
 

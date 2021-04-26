@@ -1,7 +1,7 @@
 // STATISTIK GRUP > 500 member
 
 let dateFormat = require("dateformat");
-// const fs = require('fs');
+const fs = require('fs');
 
 let nFormat = new Intl.NumberFormat('id-ID')
 let nFormatPersen = new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 2 })
@@ -27,7 +27,12 @@ let statistik = {
                 // console.log(result)
 
                 // jika ingin di simpan ke file
-                // fs.writeFileSync(`../data/${message.chat_id}_.json`, JSON.stringify(result, null, 2));
+                try {
+                    fs.writeFileSync(`./data/${message.chat_id}_.json`, JSON.stringify(dataStats, null, 2));
+                } catch (error) {
+                    console.log(error)
+                }
+
                 let pesan = "📊 Statistik"
 
                 pesan += `\n\n🗓 Periode`
