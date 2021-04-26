@@ -106,8 +106,8 @@ let whois = {
                 }
 
                 let waktuRelatif = lastSeen ? Util.timeDifference((lastSeen * 1000), new Date()) : '-'
-                if (user.info.status._ == 'userStatusRecently') waktuRelatif = 'baru-baru ini.'
-                if (! user.info.type == 'userTypeBot') pesan += `\n  └⏰ diketahui ${waktuRelatif}`
+                if (user.info.status._ == 'userStatusRecently' || user.info.type == 'userTypeBot' ) waktuRelatif = 'baru-baru ini.'
+                pesan += `\n  └⏰ diketahui ${waktuRelatif}`
 
                 if (user.detail.bio) pesan += `\n\n🎶 <i>${Util.clearHTML(user.detail.bio)}</i> 🎶`
 
